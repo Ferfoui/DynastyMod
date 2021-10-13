@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "minecraft:sand"
+    },
+    {
+      "item": "dynastymod:soul"
+    }
+  ],
+  "result": {
+    "item": "minecraft:soul_sand"
+  }
+}

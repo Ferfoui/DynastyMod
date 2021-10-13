@@ -1,0 +1,31 @@
+{
+  "item.dynastymod.purified_gold_ingot": "Purified Gold Ingot",
+  "item.dynastymod.azurite": "Azurite",
+  "item.dynastymod.selenite": "Selenite",
+  "item.dynastymod.solarite": "Solarite",
+
+  "item.dynastymod.selenite_fragment": "Selenite Fragment",
+  "item.dynastymod.solarite_fragment": "Solarite Fragment",
+
+  "block.dynastymod.azurite_ore": "Azurite Ore",
+  "block.dynastymod.selenite_ore": "Selenite Ore",
+  "block.dynastymod.solarite_ore": "Solarite Ore",
+
+  "block.dynastymod.purified_gold_block": "Purified Gold Block",
+  "block.dynastymod.azurite_block": "Azurite Block",
+  "block.dynastymod.selenite_block": "Selenite Block",
+  "block.dynastymod.solarite_block": "Solarite Block",
+
+  "item.dynastymod.soul": "Soul",
+
+  "block.dynastymod.papyrus": "Papyrus",
+
+  "item.dynastymod.raska_fang": "Raska Fang",
+
+  "block.dynastymod.soul_infuser": "Soul Infuser",
+
+  "itemGroup.dynastymod_tab": "DynastyMod",
+
+  "key.dynastymod.key_one": "Test",
+  "key.categories.dynastymod": "DynastyMod"
+}

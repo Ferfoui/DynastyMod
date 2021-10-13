@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "dynastymod:selenite_block"
+    }
+  ],
+  "result": {
+    "item": "dynastymod:selenite",
+    "count": 9
+  }
+}

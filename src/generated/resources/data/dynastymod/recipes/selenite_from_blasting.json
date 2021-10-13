@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "dynastymod:selenite_ore"
+  },
+  "result": "dynastymod:selenite",
+  "experience": 0.2,
+  "cookingtime": 100
+}

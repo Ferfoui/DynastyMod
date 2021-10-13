@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top": "dynastymod:block/soul_infuser_top",
+    "front": "dynastymod:block/soul_infuser_front",
+    "side": "dynastymod:block/soul_infuser_side"
+  }
+}

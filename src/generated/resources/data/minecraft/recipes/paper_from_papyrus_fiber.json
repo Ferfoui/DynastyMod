@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "dynastymod:papyrus_fiber"
+    }
+  },
+  "result": {
+    "item": "minecraft:paper"
+  }
+}

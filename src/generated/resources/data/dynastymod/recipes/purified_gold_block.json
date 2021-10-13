@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "dynastymod:purified_gold_ingot"
+    }
+  },
+  "result": {
+    "item": "dynastymod:purified_gold_block"
+  }
+}

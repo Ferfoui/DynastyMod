@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "dynastymod:azurite_ore"
+  },
+  "result": "dynastymod:azurite",
+  "experience": 0.1,
+  "cookingtime": 100
+}

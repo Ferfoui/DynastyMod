@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "dynastymod:azurite_block"
+    }
+  ],
+  "result": {
+    "item": "dynastymod:azurite",
+    "count": 9
+  }
+}

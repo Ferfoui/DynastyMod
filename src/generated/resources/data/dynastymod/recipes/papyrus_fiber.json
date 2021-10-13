@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "dynastymod:papyrus"
+    }
+  ],
+  "result": {
+    "item": "dynastymod:papyrus_fiber",
+    "count": 2
+  }
+}
