@@ -1,10 +1,8 @@
 package fr.dynasty.dynastymod.biome;
 
 import fr.dynasty.dynastymod.DynastyMod;
-import fr.dynasty.dynastymod.init.ModFeatures;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
-import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.structure.StructureFeatures;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -20,12 +18,11 @@ public class ModBiomes {
         MobSpawnInfo.Builder mobspawninfo$builder = new MobSpawnInfo.Builder();
         DefaultBiomeFeatures.desertSpawns(mobspawninfo$builder);
 
-        BiomeGenerationSettings.Builder biomegenerationsettings$builder = (new BiomeGenerationSettings.Builder()).surfaceBuilder(ModSurfaceBuilders.OASIS);
+        BiomeGenerationSettings.Builder biomegenerationsettings$builder = (new BiomeGenerationSettings.Builder()).surfaceBuilder(ModConfiguredSurfaceBuilder.OASIS);
         DefaultBiomeFeatures.addDefaultOverworldLandStructures(biomegenerationsettings$builder);
         biomegenerationsettings$builder.addStructureStart(StructureFeatures.RUINED_PORTAL_DESERT);
-        biomegenerationsettings$builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ModFeatures.FLOWER_PAPYRUS_FEATURE);
-        biomegenerationsettings$builder.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ModFeatures.ORE_AZURITE_FEATURE);
         DefaultBiomeFeatures.addDefaultCarvers(biomegenerationsettings$builder);
+        DefaultBiomeFeatures.addDefaultLakes(biomegenerationsettings$builder);
         DefaultBiomeFeatures.addDesertLakes(biomegenerationsettings$builder);
         DefaultBiomeFeatures.addDefaultMonsterRoom(biomegenerationsettings$builder);
         DefaultBiomeFeatures.addDefaultUndergroundVariety(biomegenerationsettings$builder);

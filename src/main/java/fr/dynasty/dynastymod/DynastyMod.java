@@ -44,9 +44,9 @@ public class DynastyMod {
         ModItems.ITEMS.register(bus);
         ModBlocks.BLOCKS.register(bus);
         ModTileEntities.TILE_ENTITIES.register(bus);
-        //ModBiomes.BIOMES.register(bus);
+        ModBiomes.BIOMES.register(bus);
 
-        //BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(RegistryKey.create(Registry.BIOME_REGISTRY, rl("oasis")), 5));
+        BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(RegistryKey.create(Registry.BIOME_REGISTRY, rl("oasis")), 5));
 
     }
 

@@ -13,10 +13,10 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class ModFeatures {
 
-    public static ConfiguredFeature<?, ?> ORE_AZURITE_FEATURE;
-    public static ConfiguredFeature<?, ?> ORE_SELENITE_FEATURE;
-    public static ConfiguredFeature<?, ?> ORE_SOLARITE_FEATURE;
-    public static ConfiguredFeature<?, ?> FLOWER_PAPYRUS_FEATURE;
+    public ConfiguredFeature<?, ?> ORE_AZURITE_FEATURE;
+    public ConfiguredFeature<?, ?> ORE_SELENITE_FEATURE;
+    public ConfiguredFeature<?, ?> ORE_SOLARITE_FEATURE;
+    public ConfiguredFeature<?, ?> FLOWER_PAPYRUS_FEATURE;
 
     public void init() {
 
@@ -36,7 +36,7 @@ public class ModFeatures {
                 .count(2));
 
         FLOWER_PAPYRUS_FEATURE = register("flower_papyrus", Feature.FLOWER.configured((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.PAPYRUS.get().defaultBlockState()), SimpleBlockPlacer.INSTANCE))
-                .tries(21).build()));
+                .tries(64).build()));
 
     }
 
@@ -53,6 +53,7 @@ public class ModFeatures {
             if (e.getCategory() != Biome.Category.NETHER) {
                 if (e.getCategory() == Biome.Category.DESERT) {
                     generation.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ORE_AZURITE_FEATURE);
+                    generation.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, FLOWER_PAPYRUS_FEATURE);
                 }
                 if (e.getCategory() == Biome.Category.SAVANNA) {
                     generation.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, FLOWER_PAPYRUS_FEATURE);
