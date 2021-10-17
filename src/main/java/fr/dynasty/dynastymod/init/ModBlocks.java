@@ -3,7 +3,7 @@ package fr.dynasty.dynastymod.init;
 import fr.dynasty.dynastymod.DynastyMod;
 //import fr.dynasty.dynastymod.blocks.SoulInfuser;
 import fr.dynasty.dynastymod.blocks.ModOreBlock;
-import fr.dynasty.dynastymod.blocks.soulinfuser.SoulInfuser;
+import fr.dynasty.dynastymod.blocks.soulinfuser.SoulInfuserBlock;
 import fr.dynasty.dynastymod.utils.ModItemGroups;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
@@ -34,7 +34,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> SELENITE_BLOCK = createBlock("selenite_block", () -> new Block(AbstractBlock.Properties.of(Material.METAL).sound(SoundType.METAL).strength(4f, 8f).harvestTool(ToolType.PICKAXE).harvestLevel(3).requiresCorrectToolForDrops()));
     public static final RegistryObject<Block> SOLARITE_BLOCK = createBlock("solarite_block", () -> new Block(AbstractBlock.Properties.of(Material.METAL).sound(SoundType.METAL).strength(4f, 8f).harvestTool(ToolType.PICKAXE).harvestLevel(3).requiresCorrectToolForDrops()));
 
-    public static final RegistryObject<Block> SOUL_INFUSER = createBlock("soul_infuser", SoulInfuser::new);
+    public static final RegistryObject<Block> SOUL_INFUSER = createBlock("soul_infuser", SoulInfuserBlock::new);
 
     public static final RegistryObject<Block> PAPYRUS = createBlock("papyrus", () -> new FlowerBlock(Effects.DAMAGE_RESISTANCE, 5, AbstractBlock.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
 

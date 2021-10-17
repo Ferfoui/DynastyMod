@@ -2,6 +2,7 @@ package fr.dynasty.dynastymod;
 
 import fr.dynasty.dynastymod.biome.ModBiomes;
 import fr.dynasty.dynastymod.init.*;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -66,8 +67,12 @@ public class DynastyMod {
     private void clientSetup(FMLClientSetupEvent e) {
 
         IEventBus bus = MinecraftForge.EVENT_BUS;
+
+        //key
         ModKeyBindings.register();
         bus.addListener(ModKeyBindings::onKeyPress);
+
+        //ScreenManager.register(ModContainers.SOUL_INFUSER_CONTAINER.get(), TestContainerScreen::new);
 
     }
 
