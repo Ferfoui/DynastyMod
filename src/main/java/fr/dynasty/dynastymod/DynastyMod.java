@@ -1,7 +1,9 @@
 package fr.dynasty.dynastymod;
 
 import fr.dynasty.dynastymod.biome.ModBiomes;
+import fr.dynasty.dynastymod.blocks.soulinfuser.ScreenSoulInfuser;
 import fr.dynasty.dynastymod.init.*;
+import fr.dynasty.dynastymod.init.ModRecipes;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
@@ -26,6 +28,9 @@ public class DynastyMod {
     public static ResourceLocation rl(String path) {
         return new ResourceLocation(MODID, path);
     }
+    public static String rlString(String path) {
+        return MODID + path;
+    }
 
     //network
     public static final String PROTOCOL_VERSION = "1";
@@ -41,10 +46,13 @@ public class DynastyMod {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
         MinecraftForge.EVENT_BUS.register(this);
 
+        //registration
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         ModItems.ITEMS.register(bus);
         ModBlocks.BLOCKS.register(bus);
         ModTileEntities.TILE_ENTITIES.register(bus);
+        ModContainers.CONTAINERS.register(bus);
+        ModRecipes.Serializers.RECIPE_SERIALIZERS.register(bus);
         ModBiomes.BIOMES.register(bus);
 
         BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(RegistryKey.create(Registry.BIOME_REGISTRY, rl("oasis")), 5));
@@ -72,7 +80,8 @@ public class DynastyMod {
         ModKeyBindings.register();
         bus.addListener(ModKeyBindings::onKeyPress);
 
-        //ScreenManager.register(ModContainers.SOUL_INFUSER_CONTAINER.get(), TestContainerScreen::new);
+        //screen
+        ScreenManager.register(ModContainers.SOUL_INFUSER_CONTAINER.get(), ScreenSoulInfuser::new);
 
     }
 
