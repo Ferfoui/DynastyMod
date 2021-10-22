@@ -6,6 +6,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.inventory.container.Container;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
@@ -40,6 +41,10 @@ public class BlockSoulInfuser extends ContainerBlock {
     final static int MAX_NUMBER_OF_BURNING_SIDES = 4;
     public static final IntegerProperty BURNING_SIDES_COUNT = IntegerProperty.create("burning_sides_count",0, MAX_NUMBER_OF_BURNING_SIDES);
 
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
+        builder.add(BURNING_SIDES_COUNT);
+    }
+
     // change the furnace emitted light ("block light") depending on how many slots are burning
     private static final int ALL_SIDES_LIGHT_VALUE = 15; // light value for four sides burning
     private static final int ONE_SIDE_LIGHT_VALUE = 8;  // light value for a single side burning
@@ -47,7 +52,7 @@ public class BlockSoulInfuser extends ContainerBlock {
     /**
      * Amount of block light emitted by the furnace
      * This function is registered in the Block Properties using func_235838_a;  see BlockInventoryFurnace constructor
-     *//*
+     */
     public static int getLightValue(BlockState state) {
         int lightValue = 0;
         Integer burningSidesCount = state.getValue(BURNING_SIDES_COUNT);
@@ -61,7 +66,7 @@ public class BlockSoulInfuser extends ContainerBlock {
         }
         lightValue = MathHelper.clamp(lightValue, 0, ALL_SIDES_LIGHT_VALUE);
         return lightValue;
-    }*/
+    }
 
     // ---------------------
 
@@ -139,7 +144,7 @@ public class BlockSoulInfuser extends ContainerBlock {
 
     // If you want your container to provide redstone power to a comparator based on its contents, implement these methods
     //  see vanilla for examples
-/*
+
     //hasComparatorInputOverride
     @SuppressWarnings("deprecation")
     @Override
@@ -153,7 +158,7 @@ public class BlockSoulInfuser extends ContainerBlock {
     public int getAnalogOutputSignal(BlockState blockState, World worldIn, BlockPos pos) {
         return Container.getRedstoneSignalFromBlockEntity(worldIn.getBlockEntity(pos));
     }
-*/
+
     //------------------------------------------------------------
     //  The code below isn't necessary for illustrating the Inventory Furnace concepts, it's just used for rendering.
     //  For more background information see MBE03
