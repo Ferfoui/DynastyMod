@@ -38,7 +38,7 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> PAPYRUS = createBlock("papyrus", () -> new FlowerBlock(Effects.DAMAGE_RESISTANCE, 5, AbstractBlock.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
 
-    public static RegistryObject<Block> createBlock(String name, Supplier<? extends Block> supplier){
+    private static RegistryObject<Block> createBlock(String name, Supplier<? extends Block> supplier){
         RegistryObject<Block> block = BLOCKS.register(name, supplier);
         ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(ModItemGroups.TAB_DYNASTYMOD)));
         return block;

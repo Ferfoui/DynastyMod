@@ -88,6 +88,15 @@ public class RecipeGenerator extends RecipeProvider {
                 .unlockedBy("unlock", InventoryChangeTrigger.Instance.hasItems(ModItems.SOLARITE.get()))
                 .save(consumer);
 
+        ShapedRecipeBuilder.shaped(ModBlocks.SOUL_INFUSER.get())
+                .pattern("X#X")
+                .pattern("X X")
+                .pattern("#B#")
+                .define('X', Blocks.SOUL_SAND).define('#', Blocks.SOUL_SOIL)
+                .define('B', Items.FLINT_AND_STEEL)
+                .unlockedBy("unlock", InventoryChangeTrigger.Instance.hasItems(ModItems.SOUL.get()))
+                .save(consumer);
+
         ShapelessRecipeBuilder.shapeless(ModItems.PAPYRUS_FIBER.get(), 2)
                 .requires(ModBlocks.PAPYRUS.get())
                 .unlockedBy("unlock", InventoryChangeTrigger.Instance.hasItems(ModBlocks.PAPYRUS.get()))
@@ -140,7 +149,7 @@ public class RecipeGenerator extends RecipeProvider {
 
         CookingRecipeBuilder.blasting(Ingredient.of(Blocks.COBBLESTONE), Blocks.STONE.asItem(), 0.1f, 100)
                 .unlockedBy("unlock", InventoryChangeTrigger.Instance.hasItems(Blocks.COBBLESTONE))
-                .save(consumer, "cobblestone_from_blasting");
+                .save(consumer, "stone_from_blasting");
 
     }
 

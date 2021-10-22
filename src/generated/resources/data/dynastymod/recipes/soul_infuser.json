@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X#X",
+    "X X",
+    "#B#"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:soul_sand"
+    },
+    "#": {
+      "item": "minecraft:soul_soil"
+    },
+    "B": {
+      "item": "minecraft:flint_and_steel"
+    }
+  },
+  "result": {
+    "item": "dynastymod:soul_infuser"
+  }
+}

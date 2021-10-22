@@ -13,7 +13,7 @@ import net.minecraft.util.IntArray;
 
 public class ContainerSoulInfuser extends Container {
     private final IInventory inventory;
-    private IIntArray fields;
+    private final IIntArray fields;
 
     public ContainerSoulInfuser(int id, PlayerInventory playerInventory, PacketBuffer buffer) {
         this(id, playerInventory, new TileEntitySoulInfuser(), new IntArray(buffer.readByte()));
@@ -25,8 +25,8 @@ public class ContainerSoulInfuser extends Container {
         this.fields = fields;
 
         //Slots
-        this.addSlot(new Slot(this.inventory, 0, 56, 35));
-        this.addSlot(new Slot(this.inventory, 1, 117, 35) {
+        this.addSlot(new Slot(this.inventory, 0, 56, 17));
+        this.addSlot(new Slot(this.inventory, 1, 116, 35) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return false;

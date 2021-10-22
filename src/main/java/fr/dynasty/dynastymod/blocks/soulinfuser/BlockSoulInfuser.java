@@ -7,14 +7,13 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Hand;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.MathHelper;
@@ -25,12 +24,14 @@ import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
-public class BlockSoulInfuser extends Block {
+public class BlockSoulInfuser extends ContainerBlock {
 
     public static final DirectionProperty FACING = HorizontalBlock.FACING;
+    public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
     public BlockSoulInfuser() {
         super(AbstractBlock.Properties.of(Material.STONE).sound(SoundType.SOUL_SOIL).strength(2.5f, 3f).harvestTool(ToolType.PICKAXE).harvestLevel(1).requiresCorrectToolForDrops()/*.lightLevel((BlockSoulInfuser::getLightValue))*/);
+        //this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, Boolean.FALSE));
     }
     // --- The block changes its appearance depending on how many of the furnace slots have burning fuel in them
     //  In order to do that, we add a blockstate for each state (0 -> 4), each with a corresponding model.  We also change the blockLight emitted.
@@ -71,6 +72,12 @@ public class BlockSoulInfuser extends Block {
 
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
+        return newBlockEntity(world);
+    }
+
+    @Nullable
+    @Override
+    public TileEntity newBlockEntity(IBlockReader world) {
         return new TileEntitySoulInfuser();
     }
 
@@ -147,5 +154,15 @@ public class BlockSoulInfuser extends Block {
         return Container.getRedstoneSignalFromBlockEntity(worldIn.getBlockEntity(pos));
     }
 */
+    //------------------------------------------------------------
+    //  The code below isn't necessary for illustrating the Inventory Furnace concepts, it's just used for rendering.
+    //  For more background information see MBE03
+
+    // render using a BakedModel
+    // required because the default (super method) is INVISIBLE for BlockContainers.
+    @Override
+    public BlockRenderType getRenderShape(BlockState iBlockState) {
+        return BlockRenderType.MODEL;
+    }
 
 }

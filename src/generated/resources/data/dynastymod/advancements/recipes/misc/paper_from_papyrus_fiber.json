@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "minecraft:soul_sand_from_soul"
+      "dynastymod:paper_from_papyrus_fiber"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "dynastymod:soul"
+            "item": "dynastymod:papyrus_fiber"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "minecraft:soul_sand_from_soul"
+        "recipe": "dynastymod:paper_from_papyrus_fiber"
       }
     }
   },
