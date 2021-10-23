@@ -1,5 +1,6 @@
 package fr.dynasty.dynastymod.data.tag;
 
+import fr.dynasty.dynastymod.init.ModItems;
 import fr.dynasty.dynastymod.utils.tag.ModBlockTags;
 import fr.dynasty.dynastymod.utils.tag.ModItemTags;
 import net.minecraft.data.BlockTagsProvider;
@@ -17,8 +18,8 @@ public class ItemTagsGenerator extends ItemTagsProvider {
 
     @Override
     protected void addTags() {
-        this.copy(ModBlockTags.SELENITE_ORES, ModItemTags.SELENITE_ORES);
         this.copy(ModBlockTags.CELESTIAL_BLOCKS, ModItemTags.CELESTIAL_BLOCKS);
+        this.tag(ModItemTags.INFUSING_ITEMS).add(ModItems.SOUL.get());
     }
 }
 

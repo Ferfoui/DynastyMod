@@ -17,9 +17,7 @@ public class BlockTagsGenerator extends BlockTagsProvider {
 
     @Override
     protected void addTags() {
-        this.tag(ModBlockTags.SELENITE_ORES).add(ModBlocks.SELENITE_ORE.get());
         this.tag(ModBlockTags.CELESTIAL_BLOCKS).add(ModBlocks.SELENITE_BLOCK.get(),ModBlocks.SOLARITE_BLOCK.get());
-
     }
 
 }

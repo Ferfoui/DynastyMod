@@ -6,10 +6,8 @@ import net.minecraft.tags.*;
 
 public class ModItemTags {
 
-
-    public static final ITag.INamedTag<Item> SELENITE_ORES = tag("selenite_ores");
     public static final ITag.INamedTag<Item> CELESTIAL_BLOCKS = tag("celestial_blocks");
-
+    public static final ITag.INamedTag<Item> INFUSING_ITEMS = tag("infusing_items");
 
     private static ITag.INamedTag<Item> tag(String name) {
         return ItemTags.bind(DynastyMod.rl(name).toString());

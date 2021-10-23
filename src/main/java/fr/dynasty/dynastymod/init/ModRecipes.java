@@ -11,7 +11,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class ModRecipes {
 
     public static class Types {
-        public static final IRecipeType<InfusingRecipe> INFUSING = IRecipeType.register(DynastyMod.rlString("infusing"));
+        public static final IRecipeType<InfusingRecipe> INFUSING = IRecipeType.register(DynastyMod.rl("infusing").toString());
     }
 
     public static class Serializers {

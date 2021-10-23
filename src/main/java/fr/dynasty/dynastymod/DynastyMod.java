@@ -28,9 +28,6 @@ public class DynastyMod {
     public static ResourceLocation rl(String path) {
         return new ResourceLocation(MODID, path);
     }
-    public static String rlString(String path) {
-        return MODID + path;
-    }
 
     //network
     public static final String PROTOCOL_VERSION = "1";

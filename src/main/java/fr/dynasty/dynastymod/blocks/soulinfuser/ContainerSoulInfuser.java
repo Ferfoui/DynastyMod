@@ -1,6 +1,7 @@
 package fr.dynasty.dynastymod.blocks.soulinfuser;
 
 import fr.dynasty.dynastymod.init.ModContainers;
+import fr.dynasty.dynastymod.init.ModItems;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -26,7 +27,13 @@ public class ContainerSoulInfuser extends Container {
 
         //Slots
         this.addSlot(new Slot(this.inventory, 0, 56, 17));
-        this.addSlot(new Slot(this.inventory, 1, 116, 35) {
+        this.addSlot(new Slot(this.inventory, 1, 56, 53) {
+            @Override
+            public boolean mayPlace(ItemStack stack) {
+                return stack.getItem() == ModItems.SOUL.get();
+            }
+        });
+        this.addSlot(new Slot(this.inventory, 2, 116, 35) {
             @Override
             public boolean mayPlace(ItemStack stack) {
                 return false;
@@ -70,38 +77,38 @@ public class ContainerSoulInfuser extends Container {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.slots.get(index);
         if (slot != null && slot.hasItem()) {
-            ItemStack itemstack1 = slot.getItem();
-            itemstack = itemstack1.copy();
+            ItemStack stack = slot.getItem();
+            itemstack = stack.copy();
 
             final int inventorySize = 2;
             final int playerInventoryEnd = inventorySize + 27;
             final int playerHotbarEnd = playerInventoryEnd + 9;
 
             if (index == 1) {
-                if (!this.moveItemStackTo(itemstack1, inventorySize, playerHotbarEnd, true)) {
+                if (!this.moveItemStackTo(stack, inventorySize, playerHotbarEnd, true)) {
                     return ItemStack.EMPTY;
                 }
 
-                slot.onQuickCraft(itemstack1, itemstack);
+                slot.onQuickCraft(stack, itemstack);
             } else if (index != 0) {
-                if (!this.moveItemStackTo(itemstack1, 0, 1, false)) {
+                if (!this.moveItemStackTo(stack, 0, 1, false)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.moveItemStackTo(itemstack1, inventorySize, playerHotbarEnd, false)) {
+            } else if (!this.moveItemStackTo(stack, inventorySize, playerHotbarEnd, false)) {
                 return ItemStack.EMPTY;
             }
 
-            if (itemstack1.isEmpty()) {
+            if (stack.isEmpty()) {
                 slot.set(ItemStack.EMPTY);
             } else {
                 slot.setChanged();
             }
 
-            if (itemstack1.getCount() == itemstack.getCount()) {
+            if (stack.getCount() == itemstack.getCount()) {
                 return ItemStack.EMPTY;
             }
 
-            slot.onTake(player, itemstack1);
+            slot.onTake(player, stack);
         }
 
         return itemstack;

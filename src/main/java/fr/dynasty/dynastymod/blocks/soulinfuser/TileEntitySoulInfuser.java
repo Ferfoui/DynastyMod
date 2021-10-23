@@ -66,7 +66,7 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
     public TileEntitySoulInfuser() {
         super(ModTileEntities.SOUL_INFUSER_TILE_ENTITY.get());
         this.handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
-        this.items = NonNullList.withSize(2, ItemStack.EMPTY);
+        this.items = NonNullList.withSize(3, ItemStack.EMPTY);
     }
 
     void encodeExtraData(PacketBuffer buffer) {
@@ -93,7 +93,7 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
 
     @Nullable
     public InfusingRecipe getRecipe() {
-        if (this.level == null || getItem(0).isEmpty()) {
+        if (this.level == null || getItem(0).isEmpty() || getItem(1).isEmpty()) {
             return null;
         }
         return this.level.getRecipeManager().getRecipeFor(ModRecipes.Types.INFUSING, this, this.level).orElse(null);
@@ -139,6 +139,7 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
 
         progress = 0;
         this.removeItem(0, 1);
+        this.removeItem(1, 1);
     }
 
     private void stopWork() {
@@ -147,7 +148,7 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
 
     @Override
     public int[] getSlotsForFace(Direction direction) {
-        return new int[]{0, 1};
+        return new int[]{0, 1, 2};
     }
 
     @Override
@@ -157,7 +158,7 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
 
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
-        return index == 1;
+        return index == 2;
     }
 
     @Override
@@ -172,27 +173,33 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
 
     @Override
     public int getContainerSize() {
-        return 2;
+        return this.items.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return getItem(0).isEmpty() && getItem(1).isEmpty();
+        for(ItemStack itemstack : this.items) {
+            if (!itemstack.isEmpty()) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     @Override
     public ItemStack getItem(int index) {
-        return items.get(index);
+        return this.items.get(index);
     }
 
     @Override
     public ItemStack removeItem(int index, int count) {
-        return ItemStackHelper.removeItem(items, index, count);
+        return ItemStackHelper.removeItem(this.items, index, count);
     }
 
     @Override
     public ItemStack removeItemNoUpdate(int index) {
-        return ItemStackHelper.takeItem(items, index);
+        return ItemStackHelper.takeItem(this.items, index);
     }
 
     @Override
@@ -215,7 +222,7 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
     @Override
     public void load(BlockState state, CompoundNBT tags) {
         super.load(state, tags);
-        this.items = NonNullList.withSize(2, ItemStack.EMPTY);
+        this.items = NonNullList.withSize(3, ItemStack.EMPTY);
         ItemStackHelper.loadAllItems(tags, this.items);
 
         this.progress = tags.getInt("Progress");
