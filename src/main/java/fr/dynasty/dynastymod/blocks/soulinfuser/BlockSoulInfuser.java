@@ -1,5 +1,6 @@
 package fr.dynasty.dynastymod.blocks.soulinfuser;
 
+import fr.dynasty.dynastymod.utils.ModStats;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
@@ -7,12 +8,16 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.Container;
+import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.stats.Stats;
+import net.minecraft.tileentity.FurnaceTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -20,53 +25,27 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
+import java.util.Random;
+import java.util.function.ToIntFunction;
 
 public class BlockSoulInfuser extends ContainerBlock {
 
     public static final DirectionProperty FACING = HorizontalBlock.FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
-    public BlockSoulInfuser() {
-        super(AbstractBlock.Properties.of(Material.STONE).sound(SoundType.SOUL_SOIL).strength(2.5f, 3f).harvestTool(ToolType.PICKAXE).harvestLevel(1).requiresCorrectToolForDrops()/*.lightLevel((BlockSoulInfuser::getLightValue))*/);
-        //this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, Boolean.FALSE));
+    public BlockSoulInfuser(ToIntFunction<BlockState> lightValue) {
+        super(AbstractBlock.Properties.of(Material.STONE).sound(SoundType.SOUL_SOIL).strength(2.5f, 3f).harvestTool(ToolType.PICKAXE).harvestLevel(1).requiresCorrectToolForDrops().lightLevel(lightValue));
+        BlockState defaultBlockState = this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, Boolean.valueOf(false));
+        this.registerDefaultState(defaultBlockState);
     }
     // --- The block changes its appearance depending on how many of the furnace slots have burning fuel in them
     //  In order to do that, we add a blockstate for each state (0 -> 4), each with a corresponding model.  We also change the blockLight emitted.
-
-
-    final static int MAX_NUMBER_OF_BURNING_SIDES = 4;
-    public static final IntegerProperty BURNING_SIDES_COUNT = IntegerProperty.create("burning_sides_count",0, MAX_NUMBER_OF_BURNING_SIDES);
-
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(BURNING_SIDES_COUNT);
-    }
-
-    // change the furnace emitted light ("block light") depending on how many slots are burning
-    private static final int ALL_SIDES_LIGHT_VALUE = 15; // light value for four sides burning
-    private static final int ONE_SIDE_LIGHT_VALUE = 8;  // light value for a single side burning
-
-    /**
-     * Amount of block light emitted by the furnace
-     * This function is registered in the Block Properties using func_235838_a;  see BlockInventoryFurnace constructor
-     */
-    public static int getLightValue(BlockState state) {
-        int lightValue = 0;
-        Integer burningSidesCount = state.getValue(BURNING_SIDES_COUNT);
-
-        if (burningSidesCount == 0) {
-            lightValue = 0;
-        } else {
-            // linearly interpolate the light value depending on how many slots are burning
-            lightValue = ONE_SIDE_LIGHT_VALUE +
-                    (ALL_SIDES_LIGHT_VALUE - ONE_SIDE_LIGHT_VALUE) * burningSidesCount / (MAX_NUMBER_OF_BURNING_SIDES - 1);
-        }
-        lightValue = MathHelper.clamp(lightValue, 0, ALL_SIDES_LIGHT_VALUE);
-        return lightValue;
-    }
 
     // ---------------------
 
@@ -86,6 +65,28 @@ public class BlockSoulInfuser extends ContainerBlock {
         return new TileEntitySoulInfuser();
     }
 
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public void animateTick(BlockState state, World world, BlockPos pos, Random random) {
+        if (state.getValue(LIT)) {
+            double d0 = (double)pos.getX() + 0.5D;
+            double d1 = (double)pos.getY();
+            double d2 = (double)pos.getZ() + 0.5D;
+            if (random.nextDouble() < 0.1D) {
+                world.playLocalSound(d0, d1, d2, SoundEvents.FURNACE_FIRE_CRACKLE, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+            }
+
+            Direction direction = state.getValue(FACING);
+            Direction.Axis direction$axis = direction.getAxis();
+            double d3 = 0.52D;
+            double d4 = random.nextDouble() * 0.6D - 0.3D;
+            double d5 = direction$axis == Direction.Axis.X ? (double)direction.getStepX() * 0.52D : d4;
+            double d6 = random.nextDouble() * 6.0D / 16.0D;
+            double d7 = direction$axis == Direction.Axis.Z ? (double)direction.getStepZ() * 0.52D : d4;
+            world.addParticle(ParticleTypes.SOUL_FIRE_FLAME, d0 + d5, d1 + d6, d2 + d7, 0.0D, 0.0D, 0.0D);
+        }
+    }
+
     @SuppressWarnings("deprecation")
     @Override
     public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTrace) {
@@ -100,6 +101,7 @@ public class BlockSoulInfuser extends ContainerBlock {
         TileEntity tileEntity = world.getBlockEntity(pos);
         if (tileEntity instanceof TileEntitySoulInfuser && player instanceof ServerPlayerEntity) {
             TileEntitySoulInfuser te = (TileEntitySoulInfuser) tileEntity;
+            player.awardStat(ModStats.INTERACT_WITH_SOUL_INFUSER);
             NetworkHooks.openGui((ServerPlayerEntity) player, te, te::encodeExtraData);
         }
     }
@@ -125,8 +127,25 @@ public class BlockSoulInfuser extends ContainerBlock {
 
     @SuppressWarnings("deprecation")
     @Override
-    public BlockState rotate(BlockState state, Rotation rot) {
-        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+    public boolean hasAnalogOutputSignal(BlockState state) {
+        return true;
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public int getAnalogOutputSignal(BlockState state, World world, BlockPos pos) {
+        return Container.getRedstoneSignalFromBlockEntity(world.getBlockEntity(pos));
+    }
+
+    @Override
+    public BlockRenderType getRenderShape(BlockState state) {
+        return BlockRenderType.MODEL;
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public BlockState rotate(BlockState state, Rotation rotation) {
+        return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
     @SuppressWarnings("deprecation")
@@ -137,37 +156,7 @@ public class BlockSoulInfuser extends ContainerBlock {
 
     @Override
     protected void createBlockStateDefinition(StateContainer.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
-    }
-
-// ---------------------------
-
-    // If you want your container to provide redstone power to a comparator based on its contents, implement these methods
-    //  see vanilla for examples
-
-    //hasComparatorInputOverride
-    @SuppressWarnings("deprecation")
-    @Override
-    public boolean hasAnalogOutputSignal(BlockState state) {
-        return true;
-    }
-
-    //getComparatorInputOverride
-    @SuppressWarnings("deprecation")
-    @Override
-    public int getAnalogOutputSignal(BlockState blockState, World worldIn, BlockPos pos) {
-        return Container.getRedstoneSignalFromBlockEntity(worldIn.getBlockEntity(pos));
-    }
-
-    //------------------------------------------------------------
-    //  The code below isn't necessary for illustrating the Inventory Furnace concepts, it's just used for rendering.
-    //  For more background information see MBE03
-
-    // render using a BakedModel
-    // required because the default (super method) is INVISIBLE for BlockContainers.
-    @Override
-    public BlockRenderType getRenderShape(BlockState iBlockState) {
-        return BlockRenderType.MODEL;
+        builder.add(FACING, LIT);
     }
 
 }

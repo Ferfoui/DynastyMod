@@ -2,20 +2,24 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "dynastymod:purified_gold_ingot"
+      "dynastymod:purified_gold_ingot_from_block"
     ]
   },
   "criteria": {
     "unlock": {
-      "trigger": "minecraft:placed_block",
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "block": "dynastymod:soul_infuser"
+        "items": [
+          {
+            "item": "dynastymod:purified_gold_block"
+          }
+        ]
       }
     },
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "dynastymod:purified_gold_ingot"
+        "recipe": "dynastymod:purified_gold_ingot_from_block"
       }
     }
   },

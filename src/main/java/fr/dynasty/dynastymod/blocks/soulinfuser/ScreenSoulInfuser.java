@@ -35,6 +35,9 @@ public class ScreenSoulInfuser extends ContainerScreen<ContainerSoulInfuser> {
 
         blit(matrixStack, posX, posY, 0,0, this.imageWidth, this.imageHeight);
 
+        if (menu.isLit()) {
+            blit(matrixStack, posX + 79, posY + 34, 176, 14, this.imageWidth, this.imageHeight);
+        }
         //progress arrow
         blit(matrixStack, posX + 79, posY + 35, 176, 14, menu.getProgressArrowScale() + 1, 16);
     }

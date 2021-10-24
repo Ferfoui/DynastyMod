@@ -19,7 +19,7 @@ public class ItemTagsGenerator extends ItemTagsProvider {
     @Override
     protected void addTags() {
         this.copy(ModBlockTags.CELESTIAL_BLOCKS, ModItemTags.CELESTIAL_BLOCKS);
-        this.tag(ModItemTags.INFUSING_ITEMS).add(ModItems.SOUL.get());
+        this.tag(ModItemTags.INFUSER_ITEMS).add(ModItems.SOUL.get());
     }
 }
 

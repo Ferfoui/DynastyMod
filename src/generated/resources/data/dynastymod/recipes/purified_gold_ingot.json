@@ -1,12 +1,13 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "item": "dynastymod:purified_gold_block"
-    }
-  ],
+  "type": "dynastymod:infusing",
+  "ingredient": {
+    "item": "minecraft:gold_ingot"
+  },
+  "infuser": {
+    "item": "dynastymod:soul"
+  },
   "result": {
-    "item": "dynastymod:purified_gold_ingot",
-    "count": 9
-  }
+    "item": "dynastymod:purified_gold_ingot"
+  },
+  "count": 1
 }

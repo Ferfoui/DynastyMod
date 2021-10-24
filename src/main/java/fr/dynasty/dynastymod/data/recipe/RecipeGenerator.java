@@ -4,6 +4,7 @@ import fr.dynasty.dynastymod.DynastyMod;
 import fr.dynasty.dynastymod.init.ModBlocks;
 import fr.dynasty.dynastymod.init.ModItems;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
+import net.minecraft.advancements.criterion.PlacedBlockTrigger;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.*;
 import net.minecraft.item.Items;
@@ -25,7 +26,7 @@ public class RecipeGenerator extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(ModItems.PURIFIED_GOLD_INGOT.get(), 9)
                 .requires(ModBlocks.PURIFIED_GOLD_BLOCK.get())
                 .unlockedBy("unlock", InventoryChangeTrigger.Instance.hasItems(ModBlocks.PURIFIED_GOLD_BLOCK.get()))
-                .save(consumer);
+                .save(consumer, DynastyMod.rl("purified_gold_ingot_from_block"));
 
         ShapedRecipeBuilder.shaped(ModBlocks.PURIFIED_GOLD_BLOCK.get())
                 .pattern("XXX")
@@ -137,7 +138,13 @@ public class RecipeGenerator extends RecipeProvider {
 
         CookingRecipeBuilder.blasting(Ingredient.of(ModBlocks.SOLARITE_ORE.get().asItem()), ModItems.SOLARITE.get(), 0.2f, 100)
                 .unlockedBy("unlock", InventoryChangeTrigger.Instance.hasItems(ModBlocks.SOLARITE_ORE.get()))
-                .save(consumer,DynastyMod.rl("solarite_from_blasting"));
+                .save(consumer, DynastyMod.rl("solarite_from_blasting"));
+
+        //infusing
+        InfusingRecipeBuilder.infusing(Ingredient.of(Items.GOLD_INGOT), Ingredient.of(ModItems.SOUL.get()), ModItems.PURIFIED_GOLD_INGOT.get())
+                .unlocks("unlock", PlacedBlockTrigger.Instance.placedBlock(ModBlocks.SOUL_INFUSER.get()))
+                .save(consumer, DynastyMod.rl("purified_gold_ingot"));
+
 
         //vanilla crafts
         ShapedRecipeBuilder.shaped(Blocks.GRASS_BLOCK)

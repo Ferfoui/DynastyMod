@@ -7,7 +7,7 @@ import net.minecraft.tags.*;
 public class ModItemTags {
 
     public static final ITag.INamedTag<Item> CELESTIAL_BLOCKS = tag("celestial_blocks");
-    public static final ITag.INamedTag<Item> INFUSING_ITEMS = tag("infusing_items");
+    public static final ITag.INamedTag<Item> INFUSER_ITEMS = tag("infuser_items");
 
     private static ITag.INamedTag<Item> tag(String name) {
         return ItemTags.bind(DynastyMod.rl(name).toString());

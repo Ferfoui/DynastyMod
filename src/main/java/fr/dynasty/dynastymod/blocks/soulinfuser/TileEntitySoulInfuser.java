@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
+import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableTileEntity;
 import net.minecraft.util.Direction;
@@ -33,9 +34,11 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
     static final int WORK_TIME = secondsToTicks(2);
 
     private NonNullList<ItemStack> items;
+
     private final LazyOptional<? extends IItemHandler>[] handlers;
 
     private int progress = 0;
+    private int litDuration;
 
     private final IIntArray fields = new IIntArray() {
         @Override
@@ -43,6 +46,8 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
             switch (index) {
                 case 0:
                     return progress;
+                case 1:
+                    return litDuration;
                 default:
                     return 0;
             }
@@ -54,12 +59,15 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
                 case 0:
                     progress = value;
                     break;
+                case 1:
+                    litDuration = value;
+                    break;
             }
         }
 
         @Override
         public int getCount() {
-            return 1;
+            return 2;
         }
     };
 
@@ -109,7 +117,7 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
     private void doWork(InfusingRecipe recipe) {
         assert this.level != null;
 
-        ItemStack current = getItem(1);
+        ItemStack current = getItem(2);
         ItemStack output = getWorkOutput(recipe);
 
         if (!current.isEmpty()) {
@@ -134,7 +142,7 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
         if (!current.isEmpty()) {
             current.grow(output.getCount());
         } else {
-            setItem(1, output);
+            setItem(2, output);
         }
 
         progress = 0;
