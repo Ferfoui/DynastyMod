@@ -1,5 +1,6 @@
 package fr.dynasty.dynastymod.blocks.soulinfuser;
 
+import fr.dynasty.dynastymod.DynastyMod;
 import fr.dynasty.dynastymod.init.ModRecipes;
 import fr.dynasty.dynastymod.init.ModTileEntities;
 import fr.dynasty.dynastymod.utils.crafting.recipe.InfusingRecipe;
@@ -13,7 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
-import net.minecraft.tileentity.AbstractFurnaceTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableTileEntity;
 import net.minecraft.util.Direction;
@@ -172,7 +172,7 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
 
     @Override
     protected ITextComponent getDefaultName() {
-        return new TranslationTextComponent("container.dynastymod.soul_infuser");
+        return new TranslationTextComponent("container." + DynastyMod.MODID + ".soul_infuser");
     }
 
     @Override
