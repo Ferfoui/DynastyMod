@@ -104,6 +104,7 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
         if (this.level == null || getItem(0).isEmpty() || getItem(1).isEmpty()) {
             return null;
         }
+        //getRecipeFor(ModRecipes.Types.INFUSING, ..., ...) don't work
         return this.level.getRecipeManager().getRecipeFor(ModRecipes.Types.INFUSING, this, this.level).orElse(null);
     }
 
