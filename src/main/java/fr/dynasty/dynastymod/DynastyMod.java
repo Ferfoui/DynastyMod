@@ -58,10 +58,12 @@ public class DynastyMod {
 
     private void setup(FMLCommonSetupEvent e) {
 
+        IEventBus bus = MinecraftForge.EVENT_BUS;
+        
         //features
         ModFeatures features = new ModFeatures();
         features.init();
-        MinecraftForge.EVENT_BUS.register(features);
+        bus.register(features);
 
         //network
         /*int index = 0;
