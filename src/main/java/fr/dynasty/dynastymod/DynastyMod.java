@@ -24,7 +24,7 @@ public class DynastyMod {
     //modid
     public static final String MODID = "dynastymod";
 
-    //resourceLocation
+    //resourceLocation of mod
     public static ResourceLocation rl(String path) {
         return new ResourceLocation(MODID, path);
     }
