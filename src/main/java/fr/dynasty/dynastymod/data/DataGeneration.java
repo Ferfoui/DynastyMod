@@ -1,12 +1,10 @@
 package fr.dynasty.dynastymod.data;
 
 import fr.dynasty.dynastymod.DynastyMod;
-import fr.dynasty.dynastymod.data.client.BlockStateGenerator;
-import fr.dynasty.dynastymod.data.client.ItemModelGenerator;
+import fr.dynasty.dynastymod.data.client.*;
 import fr.dynasty.dynastymod.data.loottable.LootTableGenerator;
 import fr.dynasty.dynastymod.data.recipe.RecipeGenerator;
-import fr.dynasty.dynastymod.data.tag.BlockTagsGenerator;
-import fr.dynasty.dynastymod.data.tag.ItemTagsGenerator;
+import fr.dynasty.dynastymod.data.tag.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
