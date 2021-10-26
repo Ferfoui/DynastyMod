@@ -50,9 +50,11 @@ public class LootTableGenerator extends LootTableProvider {
             dropSelf(ModBlocks.SOLARITE_BLOCK.get());
 
             add(ModBlocks.AZURITE_ORE.get(), (block) -> createOreDrop(block, ModItems.AZURITE.get()));
-            add(ModBlocks.SELENITE_ORE.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(ModItems.SELENITE.get()).apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F)))
+            add(ModBlocks.SELENITE_ORE.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(ModItems.SELENITE.get())
+                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F)))
                     .apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
-            add(ModBlocks.SOLARITE_ORE.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(ModItems.SOLARITE.get()).apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F)))
+            add(ModBlocks.SOLARITE_ORE.get(), (block) -> createSilkTouchDispatchTable(block, applyExplosionDecay(block, ItemLootEntry.lootTableItem(ModItems.SOLARITE.get())
+                    .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F)))
                     .apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
 
             add(ModBlocks.SOUL_INFUSER.get(), BlockLootTables::createNameableBlockEntityTable);
