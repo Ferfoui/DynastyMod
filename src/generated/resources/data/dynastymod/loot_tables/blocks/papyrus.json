@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "dynastymod.papyrus"
+          "name": "dynastymod:papyrus"
         }
       ],
       "conditions": [
