@@ -13,7 +13,14 @@ public class BlockStateGenerator extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
+        simpleBlock(ModBlocks.PURIFIED_GOLD_BLOCK.get());
+
+        //simpleBlock(ModBlocks.AZURITE_BLOCK.get());
+        //simpleBlock(ModBlocks.SELENITE_BLOCK.get());
+        //simpleBlock(ModBlocks.SOLARITE_BLOCK.get());
+
         simpleBlock(ModBlocks.AZURITE_ORE.get());
-        simpleBlock(ModBlocks.AZURITE_BLOCK.get());
+        //simpleBlock(ModBlocks.SELENITE_ORE.get());
+        //simpleBlock(ModBlocks.SOLARITE_ORE.get());
     }
 }
