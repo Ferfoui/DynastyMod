@@ -11,7 +11,6 @@ import javax.annotation.Nullable;
 
 public class BlockTagsGenerator extends BlockTagsProvider {
 
-
     public BlockTagsGenerator(DataGenerator dataGenerator, @Nullable ExistingFileHelper existingFileHelper) {
         super(dataGenerator, DynastyMod.MODID, existingFileHelper);
     }
