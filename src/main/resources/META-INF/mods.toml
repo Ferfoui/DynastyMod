@@ -57,3 +57,10 @@ Mod utilisé pour le serveur Minecraft Dynasty
     versionRange="[1.16.5,1.17)"
     ordering="NONE"
     side="BOTH"
+
+[[dependencies.dynastymod]]
+modId="jei"
+mandatory=false
+versionRange="${jei_version_range}"
+ordering="AFTER"
+side="BOTH"
