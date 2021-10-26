@@ -1,5 +1,6 @@
 package fr.dynasty.dynastymod.data.tag;
 
+import fr.dynasty.dynastymod.DynastyMod;
 import fr.dynasty.dynastymod.init.ModBlocks;
 import fr.dynasty.dynastymod.utils.tag.ModBlockTags;
 import net.minecraft.data.BlockTagsProvider;
@@ -11,8 +12,8 @@ import javax.annotation.Nullable;
 public class BlockTagsGenerator extends BlockTagsProvider {
 
 
-    public BlockTagsGenerator(DataGenerator dataGenerator, String modId, @Nullable ExistingFileHelper existingFileHelper) {
-        super(dataGenerator, modId, existingFileHelper);
+    public BlockTagsGenerator(DataGenerator dataGenerator, @Nullable ExistingFileHelper existingFileHelper) {
+        super(dataGenerator, DynastyMod.MODID, existingFileHelper);
     }
 
     @Override

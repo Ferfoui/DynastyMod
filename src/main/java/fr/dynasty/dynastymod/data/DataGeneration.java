@@ -1,6 +1,8 @@
 package fr.dynasty.dynastymod.data;
 
 import fr.dynasty.dynastymod.DynastyMod;
+import fr.dynasty.dynastymod.data.client.BlockStateGenerator;
+import fr.dynasty.dynastymod.data.client.ItemModelGenerator;
 import fr.dynasty.dynastymod.data.recipe.RecipeGenerator;
 import fr.dynasty.dynastymod.data.tag.BlockTagsGenerator;
 import fr.dynasty.dynastymod.data.tag.ItemTagsGenerator;
@@ -13,21 +15,24 @@ import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 @Mod.EventBusSubscriber(modid = DynastyMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGeneration {
 
-
-
     @SubscribeEvent
     public static void gatherData(final GatherDataEvent e) {
 
         DataGenerator generator = e.getGenerator();
+        ExistingFileHelper existingFileHelper = e.getExistingFileHelper();
 
         if (e.includeServer()) {
 
-            ExistingFileHelper existingFileHelper = e.getExistingFileHelper();
-            BlockTagsGenerator blockTags = new BlockTagsGenerator(generator, DynastyMod.MODID, existingFileHelper);
+            BlockTagsGenerator blockTags = new BlockTagsGenerator(generator, existingFileHelper);
 
             generator.addProvider(blockTags);
-            generator.addProvider(new ItemTagsGenerator(generator, blockTags, DynastyMod.MODID, existingFileHelper));
+            generator.addProvider(new ItemTagsGenerator(generator, blockTags, existingFileHelper));
             generator.addProvider(new RecipeGenerator(generator));
+        }
+
+        if (e.includeClient()) {
+            generator.addProvider(new BlockStateGenerator(generator, existingFileHelper));
+            generator.addProvider(new ItemModelGenerator(generator, existingFileHelper));
         }
     }
 

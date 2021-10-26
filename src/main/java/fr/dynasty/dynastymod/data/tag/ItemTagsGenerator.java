@@ -1,5 +1,6 @@
 package fr.dynasty.dynastymod.data.tag;
 
+import fr.dynasty.dynastymod.DynastyMod;
 import fr.dynasty.dynastymod.init.ModItems;
 import fr.dynasty.dynastymod.utils.tag.ModBlockTags;
 import fr.dynasty.dynastymod.utils.tag.ModItemTags;
@@ -12,8 +13,8 @@ import javax.annotation.Nullable;
 
 public class ItemTagsGenerator extends ItemTagsProvider {
 
-    public ItemTagsGenerator(DataGenerator dataGenerator, BlockTagsProvider blockTagsProvider, String modId, @Nullable ExistingFileHelper existingFileHelper) {
-        super(dataGenerator, blockTagsProvider, modId, existingFileHelper);
+    public ItemTagsGenerator(DataGenerator dataGenerator, BlockTagsProvider blockTagsProvider, @Nullable ExistingFileHelper existingFileHelper) {
+        super(dataGenerator, blockTagsProvider, DynastyMod.MODID, existingFileHelper);
     }
 
     @Override
