@@ -1,14 +1,11 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
-      "tag": "minecraft:sand"
-    },
-    {
-      "item": "dynastymod:soul"
-    }
-  ],
-  "result": {
-    "item": "minecraft:soul_sand"
-  }
+  "type": "dynastymod:infusing",
+  "ingredient": {
+    "tag": "minecraft:sand"
+  },
+  "infuser": {
+    "item": "dynastymod:soul"
+  },
+  "result": "minecraft:soul_sand",
+  "count": 1
 }

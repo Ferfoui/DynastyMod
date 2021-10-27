@@ -109,12 +109,6 @@ public class RecipeGenerator extends RecipeProvider {
                 .unlockedBy("unlock", has(ModItems.PAPYRUS_FIBER.get()))
                 .save(consumer, DynastyMod.rl("paper_from_papyrus_fiber"));
 
-        ShapelessRecipeBuilder.shapeless(Blocks.SOUL_SAND)
-                .requires(ItemTags.SAND)
-                .requires(ModItems.SOUL.get())
-                .unlockedBy("unlock", has(ModItems.SOUL.get()))
-                .save(consumer, DynastyMod.rl("soul_sand_from_soul"));
-
         //modded cooks
         CookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.AZURITE_ORE.get().asItem()), ModItems.AZURITE.get(), 0.1f, 200)
                 .unlockedBy("unlock", has(ModBlocks.AZURITE_ORE.get()))
@@ -144,6 +138,10 @@ public class RecipeGenerator extends RecipeProvider {
         InfusingRecipeBuilder.infusing(Ingredient.of(Items.GOLD_INGOT), Ingredient.of(ModItems.SOUL.get()), ModItems.PURIFIED_GOLD_INGOT.get())
                 .unlocks("unlock", PlacedBlockTrigger.Instance.placedBlock(ModBlocks.SOUL_INFUSER.get()))
                 .save(consumer, DynastyMod.rl("purified_gold_ingot"));
+
+        InfusingRecipeBuilder.infusing(Ingredient.of(ItemTags.SAND), Ingredient.of(ModItems.SOUL.get()), Blocks.SOUL_SAND)
+                .unlocks("unlock", has(ModItems.SOUL.get()))
+                .save(consumer, DynastyMod.rl("soul_sand_from_soul"));
 
 
         //vanilla crafts

@@ -104,7 +104,7 @@ public class InfusingRecipe implements IRecipe<IInventory> {
             Ingredient ingredient = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "ingredient"));
             Ingredient infuser = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "infuser"));
             ResourceLocation itemId = new ResourceLocation(JSONUtils.getAsString(json, "result"));
-            int count = JSONUtils.getAsInt(json, "count", 1);
+            int count = JSONUtils.getAsInt(json, "count");
 
             ItemStack result = new ItemStack(ForgeRegistries.ITEMS.getValue(itemId), count);
 
