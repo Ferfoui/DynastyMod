@@ -10,6 +10,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
@@ -31,14 +32,13 @@ import javax.annotation.Nullable;
 
 public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedInventory, ITickableTileEntity {
 
-    static final int WORK_TIME = secondsToTicks(2);
+    static final int WORK_TIME = secondsToTicks(10);
 
     private NonNullList<ItemStack> items;
 
     private final LazyOptional<? extends IItemHandler>[] handlers;
 
-    private int progress = 0;
-    private int litDuration;
+    private int progress;
 
     private final IIntArray fields = new IIntArray() {
         @Override
@@ -46,8 +46,6 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
             switch (index) {
                 case 0:
                     return progress;
-                case 1:
-                    return litDuration;
                 default:
                     return 0;
             }
@@ -59,15 +57,12 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
                 case 0:
                     progress = value;
                     break;
-                case 1:
-                    litDuration = value;
-                    break;
             }
         }
 
         @Override
         public int getCount() {
-            return 2;
+            return 1;
         }
     };
 
@@ -78,7 +73,7 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
     }
 
     void encodeExtraData(PacketBuffer buffer) {
-        buffer.writeByte(fields.getCount());
+        buffer.writeByte(this.fields.getCount());
     }
 
     @Override
@@ -104,7 +99,6 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
         if (this.level == null || getItem(0).isEmpty() || getItem(1).isEmpty()) {
             return null;
         }
-        //getRecipeFor(ModRecipes.Types.INFUSING, ..., ...) don't work
         return this.level.getRecipeManager().getRecipeFor(ModRecipes.Types.INFUSING, this, this.level).orElse(null);
     }
 
@@ -124,7 +118,7 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
         if (!current.isEmpty()) {
             int newCount = current.getCount() + output.getCount();
 
-            if (!ItemStack.matches(current, output) || newCount > output.getMaxStackSize()) {
+            if (!current.sameItem(output) || newCount > output.getMaxStackSize()) {
                 stopWork();
                 return;
             }
@@ -137,6 +131,8 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
         if (progress >= WORK_TIME) {
             finishWork(recipe, current, output);
         }
+
+        sendUpdate(this.getBlockState().setValue(BlockSoulInfuser.LIT, true));
     }
 
     private void finishWork(InfusingRecipe recipe, ItemStack current, ItemStack output) {
@@ -146,13 +142,23 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
             setItem(2, output);
         }
 
-        progress = 0;
+        this.progress = 0;
         this.removeItem(0, 1);
         this.removeItem(1, 1);
     }
 
     private void stopWork() {
-        progress = 0;
+        this.progress = 0;
+        sendUpdate(this.getBlockState().setValue(BlockSoulInfuser.LIT, false));
+    }
+
+    private void sendUpdate(BlockState newState) {
+        if (level == null) return;
+        BlockState oldState = level.getBlockState(worldPosition);
+        if (oldState != newState) {
+            level.setBlock(worldPosition, newState, 3);
+            level.sendBlockUpdated(worldPosition, oldState, newState, 3);
+        }
     }
 
     @Override

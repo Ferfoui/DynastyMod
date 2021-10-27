@@ -87,9 +87,7 @@ public class InfusingRecipeBuilder {
         public void serializeRecipeData(JsonObject json) {
             json.add("ingredient", this.ingredient.toJson());
             json.add("infuser", this.infuser.toJson());
-            JsonObject jsonobject = new JsonObject();
-            jsonobject.addProperty("item", ForgeRegistries.ITEMS.getKey(this.result).toString());
-            json.add("result", jsonobject);
+            json.addProperty("result", ForgeRegistries.ITEMS.getKey(this.result).toString());
             json.addProperty("count", this.count);
         }
 

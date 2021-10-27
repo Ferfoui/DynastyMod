@@ -59,19 +59,8 @@ public class ContainerSoulInfuser extends Container {
             int posY = 142;
             this.addSlot(new Slot(playerInventory, x, posX, posY));
         }
-    }
 
-    public int getProgressArrowScale() {
-        int progress = fields.get(0);
-        if (isLit()) {
-            return progress * 24 / TileEntitySoulInfuser.WORK_TIME;
-        }
-        return 0;
-    }
-
-    @Override
-    public boolean stillValid(PlayerEntity player) {
-        return this.inventory.stillValid(player);
+        this.addDataSlots(fields);
     }
 
     @Override
@@ -124,19 +113,37 @@ public class ContainerSoulInfuser extends Container {
         return stack.getItem().is(ModItemTags.INFUSER_ITEMS);
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public int getLitProgress() {
-        int i = this.fields.get(1);
-        if (i == 0) {
-            i = 200;
-        }
+    @Override
+    public boolean stillValid(PlayerEntity player) {
+        return this.inventory.stillValid(player);
+    }
 
-        return this.fields.get(0) * 13 / i;
+    @OnlyIn(Dist.CLIENT)
+    public int getProgressArrowScale() {
+        int progress = this.fields.get(0);
+        if (isLit()) {
+            return progress * 24 / TileEntitySoulInfuser.WORK_TIME;
+        }
+        return 0;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public int getSoulBurning() {
+        //int i = 200;
+        /*if (isLit()) {
+            i = 200;
+        } else {
+            return 0;
+        }*/
+
+        //return fields.get(0) * 13 / TileEntitySoulInfuser.WORK_TIME;
+        return TileEntitySoulInfuser.WORK_TIME * 13 / TileEntitySoulInfuser.WORK_TIME;
     }
 
     @OnlyIn(Dist.CLIENT)
     public boolean isLit() {
-        return this.fields.get(0) > 0;
+        int progress = this.fields.get(0);
+        return progress > 0;
     }
 
 }

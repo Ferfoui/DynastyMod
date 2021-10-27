@@ -1,6 +1,7 @@
 package fr.dynasty.dynastymod.utils.crafting.recipe;
 
 import com.google.gson.JsonObject;
+import fr.dynasty.dynastymod.DynastyMod;
 import fr.dynasty.dynastymod.init.ModBlocks;
 import fr.dynasty.dynastymod.init.ModRecipes;
 import net.minecraft.inventory.IInventory;
@@ -9,7 +10,9 @@ import net.minecraft.item.crafting.*;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistryEntry;
@@ -21,6 +24,8 @@ public class InfusingRecipe implements IRecipe<IInventory> {
     private final Ingredient infuser;
     private final ItemStack result;
     private final ResourceLocation recipeId;
+
+    public static ResourceLocation TYPE_ID = DynastyMod.rl("infusing");
 
     public InfusingRecipe(ResourceLocation recipeId, Ingredient ingredient, Ingredient infuser, ItemStack result) {
         this.recipeId = recipeId;
@@ -56,6 +61,15 @@ public class InfusingRecipe implements IRecipe<IInventory> {
     }
 
     @Override
+    public NonNullList<Ingredient> getIngredients() {
+        NonNullList<Ingredient> ingredients = NonNullList.withSize(2, Ingredient.EMPTY);
+        ingredients.set(0, ingredient);
+        ingredients.set(1, infuser);
+
+        return ingredients;
+    }
+
+    @Override
     public ItemStack getToastSymbol() {
         return new ItemStack(ModBlocks.SOUL_INFUSER.get());
     }
@@ -72,7 +86,15 @@ public class InfusingRecipe implements IRecipe<IInventory> {
 
     @Override
     public IRecipeType<?> getType() {
-        return ModRecipes.Types.INFUSING;
+        return Registry.RECIPE_TYPE.getOptional(TYPE_ID).get();
+    }
+
+    public static class RecipeType implements IRecipeType<InfusingRecipe> {
+
+        @Override
+        public String toString() {
+            return InfusingRecipe.TYPE_ID.toString();
+        }
     }
 
     public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<InfusingRecipe> {

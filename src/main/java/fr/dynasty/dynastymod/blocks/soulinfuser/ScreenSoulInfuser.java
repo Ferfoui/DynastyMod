@@ -27,7 +27,8 @@ public class ScreenSoulInfuser extends ContainerScreen<ContainerSoulInfuser> {
             return;
         }
 
-        RenderSystem.color4f(1, 1, 1, 1);
+        //noinspection deprecation
+        RenderSystem.color4f(1f, 1f, 1f, 1f);
         minecraft.getTextureManager().bind(TEXTURE);
 
         int posX = (this.width - this.imageWidth) / 2;
@@ -36,9 +37,13 @@ public class ScreenSoulInfuser extends ContainerScreen<ContainerSoulInfuser> {
         blit(matrixStack, posX, posY, 0,0, this.imageWidth, this.imageHeight);
 
         if (menu.isLit()) {
-            blit(matrixStack, posX + 79, posY + 34, 176, 14, this.imageWidth, this.imageHeight);
+            //burning
+            int k = menu.getSoulBurning();
+            blit(matrixStack, posX + 56, posY + 36 + 12 - k, 176, 12 - k, 14, k + 1);
         }
+
         //progress arrow
-        blit(matrixStack, posX + 79, posY + 35, 176, 14, menu.getProgressArrowScale() + 1, 16);
+        int l = menu.getProgressArrowScale();
+        blit(matrixStack, posX + 79, posY + 34, 176, 14, l + 1, 16);
     }
 }

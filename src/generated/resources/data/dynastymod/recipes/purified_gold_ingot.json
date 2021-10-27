@@ -6,8 +6,6 @@
   "infuser": {
     "item": "dynastymod:soul"
   },
-  "result": {
-    "item": "dynastymod:purified_gold_ingot"
-  },
+  "result": "dynastymod:purified_gold_ingot",
   "count": 1
 }
