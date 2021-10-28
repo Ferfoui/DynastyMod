@@ -121,23 +121,18 @@ public class ContainerSoulInfuser extends Container {
     @OnlyIn(Dist.CLIENT)
     public int getProgressArrowScale() {
         int progress = this.fields.get(0);
+        int infusingTime = this.fields.get(1);
         if (isLit()) {
-            return progress * 24 / TileEntitySoulInfuser.WORK_TIME;
+            return progress * 24 / infusingTime;
         }
         return 0;
     }
 
     @OnlyIn(Dist.CLIENT)
     public int getSoulBurning() {
-        //int i = 200;
-        /*if (isLit()) {
-            i = 200;
-        } else {
-            return 0;
-        }*/
+        int infusingTime = fields.get(1);
 
-        //return fields.get(0) * 13 / TileEntitySoulInfuser.WORK_TIME;
-        return TileEntitySoulInfuser.WORK_TIME * 13 / TileEntitySoulInfuser.WORK_TIME;
+        return infusingTime * 13 / infusingTime;
     }
 
     @OnlyIn(Dist.CLIENT)

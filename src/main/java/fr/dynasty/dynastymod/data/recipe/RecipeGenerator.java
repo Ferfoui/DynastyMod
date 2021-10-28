@@ -139,7 +139,7 @@ public class RecipeGenerator extends RecipeProvider {
                 .unlocks("unlock", PlacedBlockTrigger.Instance.placedBlock(ModBlocks.SOUL_INFUSER.get()))
                 .save(consumer, DynastyMod.rl("purified_gold_ingot"));
 
-        InfusingRecipeBuilder.infusing(Ingredient.of(ItemTags.SAND), Ingredient.of(ModItems.SOUL.get()), Blocks.SOUL_SAND)
+        InfusingRecipeBuilder.infusing(Ingredient.of(ItemTags.SAND), Ingredient.of(ModItems.SOUL.get()), Blocks.SOUL_SAND, 100)
                 .unlocks("unlock", has(ModItems.SOUL.get()))
                 .save(consumer, DynastyMod.rl("soul_sand_from_soul"));
 

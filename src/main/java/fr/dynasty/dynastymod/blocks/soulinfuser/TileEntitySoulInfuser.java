@@ -10,7 +10,6 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
@@ -32,13 +31,12 @@ import javax.annotation.Nullable;
 
 public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedInventory, ITickableTileEntity {
 
-    static final int WORK_TIME = secondsToTicks(10);
-
     private NonNullList<ItemStack> items;
 
     private final LazyOptional<? extends IItemHandler>[] handlers;
 
     private int progress;
+    private int infusingTime;
 
     private final IIntArray fields = new IIntArray() {
         @Override
@@ -46,6 +44,8 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
             switch (index) {
                 case 0:
                     return progress;
+                case 1:
+                    return infusingTime;
                 default:
                     return 0;
             }
@@ -57,12 +57,15 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
                 case 0:
                     progress = value;
                     break;
+                case 1:
+                    infusingTime = value;
+                    break;
             }
         }
 
         @Override
         public int getCount() {
-            return 1;
+            return 2;
         }
     };
 
@@ -88,10 +91,6 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
         } else {
             stopWork();
         }
-    }
-
-    private static int secondsToTicks(int seconds) {
-        return seconds * 20;
     }
 
     @Nullable
@@ -124,11 +123,13 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
             }
         }
 
-        if (progress < WORK_TIME) {
+        this.infusingTime = recipe.getInfusingTime();
+
+        if (progress < infusingTime) {
             ++progress;
         }
 
-        if (progress >= WORK_TIME) {
+        if (progress >= infusingTime) {
             finishWork(recipe, current, output);
         }
 
@@ -143,12 +144,14 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
         }
 
         this.progress = 0;
+        this.infusingTime = 0;
         this.removeItem(0, 1);
         this.removeItem(1, 1);
     }
 
     private void stopWork() {
         this.progress = 0;
+        this.infusingTime = 0;
         sendUpdate(this.getBlockState().setValue(BlockSoulInfuser.LIT, false));
     }
 
@@ -241,6 +244,7 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
         ItemStackHelper.loadAllItems(tags, this.items);
 
         this.progress = tags.getInt("Progress");
+        this.infusingTime = tags.getInt("InfusingTime");
     }
 
     @Override
@@ -248,6 +252,7 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
         super.save(tags);
         ItemStackHelper.saveAllItems(tags, this.items);
         tags.putInt("Progress", this.progress);
+        tags.putInt("InfusingTime", this.infusingTime);
         return tags;
     }
 

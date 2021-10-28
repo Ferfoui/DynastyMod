@@ -30,8 +30,6 @@ public class SoulInfuserRecipeCategory implements IRecipeCategory<InfusingRecipe
     private final IDrawableStatic staticFlame;
     private final LoadingCache<Integer, IDrawableAnimated> progressArrow;
 
-    private final int infusingTime = 200;
-
     public SoulInfuserRecipeCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(TEXTURE, 14, 4, 148, 74);
         this.icon = helper.createDrawableIngredient(new ItemStack(ModBlocks.SOUL_INFUSER.get()));
@@ -48,6 +46,7 @@ public class SoulInfuserRecipeCategory implements IRecipeCategory<InfusingRecipe
     }
 
     protected IDrawableAnimated getArrow(InfusingRecipe recipe) {
+        int infusingTime = recipe.getInfusingTime();
         return this.progressArrow.getUnchecked(infusingTime);
     }
 
@@ -93,7 +92,7 @@ public class SoulInfuserRecipeCategory implements IRecipeCategory<InfusingRecipe
     }
 
     private void drawInfusingTime(InfusingRecipe recipe, MatrixStack matrixStack, int y) {
-        //int infusingTime = recipe.getInfusingTime();
+        int infusingTime = recipe.getInfusingTime();
         if (infusingTime > 0) {
             int infusingTimeSeconds = infusingTime / 20;
             TranslationTextComponent timeString = new TranslationTextComponent("gui.jei.category.smelting.time.seconds", infusingTimeSeconds);

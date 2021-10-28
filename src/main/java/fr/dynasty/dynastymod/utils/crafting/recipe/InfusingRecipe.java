@@ -24,14 +24,16 @@ public class InfusingRecipe implements IRecipe<IInventory> {
     private final Ingredient infuser;
     private final ItemStack result;
     private final ResourceLocation recipeId;
+    private final int infusingTime;
 
     public static ResourceLocation TYPE_ID = DynastyMod.rl("infusing");
 
-    public InfusingRecipe(ResourceLocation recipeId, Ingredient ingredient, Ingredient infuser, ItemStack result) {
+    public InfusingRecipe(ResourceLocation recipeId, Ingredient ingredient, Ingredient infuser, ItemStack result, int infusingTime) {
         this.recipeId = recipeId;
         this.ingredient = ingredient;
         this.infuser = infuser;
         this.result = result;
+        this.infusingTime = infusingTime;
     }
 
     @Override
@@ -52,7 +54,7 @@ public class InfusingRecipe implements IRecipe<IInventory> {
 
     @Override
     public boolean canCraftInDimensions(int gridWidth, int gridHeight) {
-        return gridWidth * gridHeight >= 2;
+        return true;
     }
 
     @Override
@@ -72,6 +74,10 @@ public class InfusingRecipe implements IRecipe<IInventory> {
     @Override
     public ItemStack getToastSymbol() {
         return new ItemStack(ModBlocks.SOUL_INFUSER.get());
+    }
+
+    public int getInfusingTime() {
+        return infusingTime;
     }
 
     @Override
@@ -104,11 +110,14 @@ public class InfusingRecipe implements IRecipe<IInventory> {
             Ingredient ingredient = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "ingredient"));
             Ingredient infuser = Ingredient.fromJson(JSONUtils.getAsJsonObject(json, "infuser"));
             ResourceLocation itemId = new ResourceLocation(JSONUtils.getAsString(json, "result"));
-            int count = JSONUtils.getAsInt(json, "count");
 
+            int count = JSONUtils.getAsInt(json, "count", 1);
             ItemStack result = new ItemStack(ForgeRegistries.ITEMS.getValue(itemId), count);
 
-            return new InfusingRecipe(recipeId, ingredient, infuser, result);
+            int infusingTime = JSONUtils.getAsInt(json, "time", 200);
+
+
+            return new InfusingRecipe(recipeId, ingredient, infuser, result, infusingTime);
         }
 
         @Nullable
@@ -117,8 +126,9 @@ public class InfusingRecipe implements IRecipe<IInventory> {
             Ingredient ingredient = Ingredient.fromNetwork(buffer);
             Ingredient infuser = Ingredient.fromNetwork(buffer);
             ItemStack result = buffer.readItem();
+            int infusingTime = buffer.readVarInt();
 
-            return new InfusingRecipe(recipeId, ingredient, infuser, result);
+            return new InfusingRecipe(recipeId, ingredient, infuser, result, infusingTime);
         }
 
         @Override
@@ -126,6 +136,7 @@ public class InfusingRecipe implements IRecipe<IInventory> {
             recipe.ingredient.toNetwork(buffer);
             recipe.infuser.toNetwork(buffer);
             buffer.writeItem(recipe.result);
+            buffer.writeVarInt(recipe.infusingTime);
         }
     }
 

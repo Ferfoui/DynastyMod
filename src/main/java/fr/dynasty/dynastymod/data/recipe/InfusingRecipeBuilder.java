@@ -23,27 +23,33 @@ public class InfusingRecipeBuilder {
     private final Ingredient infuser;
     private final Item result;
     private final int count;
+    private final int infusingTime;
     private final Advancement.Builder advancement = Advancement.Builder.advancement();
     private final IRecipeSerializer<?> type;
 
-    public InfusingRecipeBuilder(IRecipeSerializer<?> serializer, Ingredient ingredient, Ingredient infuser, IItemProvider itemProvider, int count) {
+    public InfusingRecipeBuilder(IRecipeSerializer<?> serializer, Ingredient ingredient, Ingredient infuser, IItemProvider itemProvider, int count, int infusingTime) {
         this.type = serializer;
         this.ingredient = ingredient;
         this.infuser = infuser;
         this.result = itemProvider.asItem();
         this.count = count;
+        this.infusingTime = infusingTime;
     }
 
     public static InfusingRecipeBuilder infusing(Ingredient ingredient, Ingredient infuser, IItemProvider itemProvider) {
-        return infusing(ingredient, infuser, itemProvider, 1);
+        return infusing(ingredient, infuser, itemProvider, 200);
     }
 
-    public static InfusingRecipeBuilder infusing(Ingredient ingredient, Ingredient infuser, IItemProvider itemProvider, int count) {
-        return new InfusingRecipeBuilder(ModRecipes.Serializers.INFUSING.get(), ingredient, infuser, itemProvider, count);
+    public static InfusingRecipeBuilder infusing(Ingredient ingredient, Ingredient infuser, IItemProvider itemProvider, int infusingTime) {
+        return infusing(ingredient, infuser, itemProvider, infusingTime, 1);
     }
 
-    public InfusingRecipeBuilder unlocks(String p_240503_1_, ICriterionInstance p_240503_2_) {
-        this.advancement.addCriterion(p_240503_1_, p_240503_2_);
+    public static InfusingRecipeBuilder infusing(Ingredient ingredient, Ingredient infuser, IItemProvider itemProvider, int infusingTime, int count) {
+        return new InfusingRecipeBuilder(ModRecipes.Serializers.INFUSING.get(), ingredient, infuser, itemProvider, count, infusingTime);
+    }
+
+    public InfusingRecipeBuilder unlocks(String name, ICriterionInstance unlockEvent) {
+        this.advancement.addCriterion(name, unlockEvent);
         return this;
     }
 
@@ -54,7 +60,7 @@ public class InfusingRecipeBuilder {
     public void save(Consumer<IFinishedRecipe> consumer, ResourceLocation resourceLocation) {
         this.ensureValid(resourceLocation);
         this.advancement.parent(new ResourceLocation("recipes/root")).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(resourceLocation)).rewards(AdvancementRewards.Builder.recipe(resourceLocation)).requirements(IRequirementsStrategy.OR);
-        consumer.accept(new InfusingRecipeBuilder.Result(resourceLocation, this.type, this.ingredient, this.infuser, this.result, this.count, this.advancement, new ResourceLocation(resourceLocation.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + resourceLocation.getPath())));
+        consumer.accept(new InfusingRecipeBuilder.Result(resourceLocation, this.type, this.ingredient, this.infuser, this.result, this.count, this.infusingTime, this.advancement, new ResourceLocation(resourceLocation.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + resourceLocation.getPath())));
     }
 
     private void ensureValid(ResourceLocation resourceLocation) {
@@ -69,17 +75,19 @@ public class InfusingRecipeBuilder {
         private final Ingredient infuser;
         private final Item result;
         private final int count;
+        private final int infusingTime;
         private final Advancement.Builder advancement;
         private final ResourceLocation advancementId;
         private final IRecipeSerializer<?> type;
 
-        public Result(ResourceLocation recipeId, IRecipeSerializer<?> type, Ingredient ingredient, Ingredient infuser, Item result, int count, Advancement.Builder advancement, ResourceLocation advancementId) {
+        public Result(ResourceLocation recipeId, IRecipeSerializer<?> type, Ingredient ingredient, Ingredient infuser, Item result, int count, int infusingTime, Advancement.Builder advancement, ResourceLocation advancementId) {
             this.id = recipeId;
             this.type = type;
             this.ingredient = ingredient;
             this.infuser = infuser;
             this.result = result;
             this.count = count;
+            this.infusingTime = infusingTime;
             this.advancement = advancement;
             this.advancementId = advancementId;
         }
@@ -89,6 +97,7 @@ public class InfusingRecipeBuilder {
             json.add("infuser", this.infuser.toJson());
             json.addProperty("result", ForgeRegistries.ITEMS.getKey(this.result).toString());
             json.addProperty("count", this.count);
+            json.addProperty("time", this.infusingTime);
         }
 
         public ResourceLocation getId() {
