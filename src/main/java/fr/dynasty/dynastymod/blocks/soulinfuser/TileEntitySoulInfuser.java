@@ -31,6 +31,8 @@ import javax.annotation.Nullable;
 
 public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedInventory, ITickableTileEntity {
 
+    private final int DEFAULT_INFUSING_TIME = 200;
+    
     private NonNullList<ItemStack> items;
 
     private final LazyOptional<? extends IItemHandler>[] handlers;
@@ -123,7 +125,11 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
             }
         }
 
-        this.infusingTime = recipe.getInfusingTime();
+        if (recipe.getInfusingTime() <= 0) {
+            this.infusingTime = DEFAULT_INFUSING_TIME;
+        } else {
+            this.infusingTime = recipe.getInfusingTime();
+        }
 
         if (progress < infusingTime) {
             ++progress;
@@ -144,14 +150,14 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
         }
 
         this.progress = 0;
-        this.infusingTime = 0;
+        this.infusingTime = DEFAULT_INFUSING_TIME;
         this.removeItem(0, 1);
         this.removeItem(1, 1);
     }
 
     private void stopWork() {
         this.progress = 0;
-        this.infusingTime = 0;
+        this.infusingTime = DEFAULT_INFUSING_TIME;
         sendUpdate(this.getBlockState().setValue(BlockSoulInfuser.LIT, false));
     }
 
