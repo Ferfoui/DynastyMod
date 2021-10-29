@@ -26,7 +26,7 @@ public class RecipeGenerator extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(ModItems.PURIFIED_GOLD_INGOT.get(), 9)
                 .requires(ModBlocks.PURIFIED_GOLD_BLOCK.get())
                 .unlockedBy("unlock", has(ModBlocks.PURIFIED_GOLD_BLOCK.get()))
-                .save(consumer, DynastyMod.rl("purified_gold_ingot_from_block"));
+                .save(consumer, DynastyMod.rl("purified_gold_ingot_from_purified_gold_block"));
 
         ShapedRecipeBuilder.shaped(ModBlocks.PURIFIED_GOLD_BLOCK.get())
                 .pattern("XXX")
@@ -89,11 +89,18 @@ public class RecipeGenerator extends RecipeProvider {
                 .unlockedBy("unlock", has(ModItems.SOLARITE.get()))
                 .save(consumer);
 
+        ShapedRecipeBuilder.shaped(ModBlocks.SOUL_STONE.get())
+                .pattern("XX")
+                .pattern("XX")
+                .define('X', Blocks.SOUL_SAND)
+                .unlockedBy("unlock", has(Blocks.SOUL_SAND))
+                .save(consumer);
+
         ShapedRecipeBuilder.shaped(ModBlocks.SOUL_INFUSER.get())
                 .pattern("X#X")
                 .pattern("X X")
-                .pattern("#B#")
-                .define('X', Blocks.SOUL_SAND).define('#', Blocks.SOUL_SOIL)
+                .pattern("XBX")
+                .define('X', ModBlocks.SOUL_STONE.get()).define('#', Blocks.SOUL_SOIL)
                 .define('B', Items.FLINT_AND_STEEL)
                 .unlockedBy("unlock", has(ModItems.SOUL.get()))
                 .save(consumer);
@@ -141,7 +148,11 @@ public class RecipeGenerator extends RecipeProvider {
 
         InfusingRecipeBuilder.infusing(Ingredient.of(ItemTags.SAND), Ingredient.of(ModItems.SOUL.get()), Blocks.SOUL_SAND, 100)
                 .unlocks("unlock", has(ModItems.SOUL.get()))
-                .save(consumer, DynastyMod.rl("soul_sand_from_soul"));
+                .save(consumer, DynastyMod.rl("soul_sand_from_infuser"));
+
+        InfusingRecipeBuilder.infusing(Ingredient.of(Blocks.SANDSTONE), Ingredient.of(ModItems.SOUL.get()), ModBlocks.SOUL_STONE.get(), 140)
+                .unlocks("unlock", has(ModItems.SOUL.get()))
+                .save(consumer, DynastyMod.rl("soul_stone_from_infuser"));
 
 
         //vanilla crafts

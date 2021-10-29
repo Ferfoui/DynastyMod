@@ -25,6 +25,8 @@ public class ItemModelGenerator extends ItemModelProvider {
         withExistingParent("selenite_ore", modLoc("block/selenite_ore"));
         withExistingParent("solarite_ore", modLoc("block/solarite_ore"));
 
+        withExistingParent("soul_stone", modLoc("block/soul_stone"));
+
         withExistingParent("soul_infuser", modLoc("block/soul_infuser"));
 
 

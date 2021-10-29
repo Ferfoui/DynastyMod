@@ -1,0 +1,12 @@
+{
+  "type": "dynastymod:infusing",
+  "ingredient": {
+    "item": "minecraft:sandstone"
+  },
+  "infuser": {
+    "item": "dynastymod:soul"
+  },
+  "result": "dynastymod:soul_stone",
+  "count": 1,
+  "time": 140
+}

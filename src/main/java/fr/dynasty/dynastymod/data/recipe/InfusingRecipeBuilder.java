@@ -60,6 +60,7 @@ public class InfusingRecipeBuilder {
     public void save(Consumer<IFinishedRecipe> consumer, ResourceLocation resourceLocation) {
         this.ensureValid(resourceLocation);
         this.advancement.parent(new ResourceLocation("recipes/root")).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(resourceLocation)).rewards(AdvancementRewards.Builder.recipe(resourceLocation)).requirements(IRequirementsStrategy.OR);
+        assert this.result.getItemCategory() != null;
         consumer.accept(new InfusingRecipeBuilder.Result(resourceLocation, this.type, this.ingredient, this.infuser, this.result, this.count, this.infusingTime, this.advancement, new ResourceLocation(resourceLocation.getNamespace(), "recipes/" + this.result.getItemCategory().getRecipeFolderName() + "/" + resourceLocation.getPath())));
     }
 

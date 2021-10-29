@@ -22,9 +22,11 @@
 
   "item.dynastymod.papyrus_fiber": "Fibre de Papyrus",
 
-  "item.dynastymod.raska_fang": "Croc de Raska",
+  "block.dynastymod.soul_stone": "Pierre des Âmes",
 
-  "block.dynastymod.soul_infuser": "Infuseur d'Âme",
+  "block.dynastymod.soul_infuser": "Infuseur d'Âmes",
+
+  "item.dynastymod.raska_fang": "Croc de Raska",
 
 
   "itemGroup.dynastymod_tab": "DynastyMod",

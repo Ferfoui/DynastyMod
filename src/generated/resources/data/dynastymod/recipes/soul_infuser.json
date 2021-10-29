@@ -3,11 +3,11 @@
   "pattern": [
     "X#X",
     "X X",
-    "#B#"
+    "XBX"
   ],
   "key": {
     "X": {
-      "item": "minecraft:soul_sand"
+      "item": "dynastymod:soul_stone"
     },
     "#": {
       "item": "minecraft:soul_soil"

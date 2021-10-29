@@ -57,6 +57,8 @@ public class LootTableGenerator extends LootTableProvider {
                     .apply(SetCount.setCount(RandomValueRange.between(1.0F, 3.0F)))
                     .apply(ApplyBonus.addUniformBonusCount(Enchantments.BLOCK_FORTUNE)))));
 
+            dropSelf(ModBlocks.SOUL_STONE.get());
+
             add(ModBlocks.SOUL_INFUSER.get(), BlockLootTables::createNameableBlockEntityTable);
 
             dropSelf(ModBlocks.PAPYRUS.get());

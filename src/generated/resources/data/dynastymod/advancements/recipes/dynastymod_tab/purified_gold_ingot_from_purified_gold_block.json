@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "dynastymod:soul_sand_from_soul"
+      "dynastymod:purified_gold_ingot_from_purified_gold_block"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "dynastymod:soul"
+            "item": "dynastymod:purified_gold_block"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "dynastymod:soul_sand_from_soul"
+        "recipe": "dynastymod:purified_gold_ingot_from_purified_gold_block"
       }
     }
   },
