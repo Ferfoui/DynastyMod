@@ -41,7 +41,7 @@ public class BlockSoulInfuser extends ContainerBlock {
 
     public BlockSoulInfuser(ToIntFunction<BlockState> lightValue) {
         super(AbstractBlock.Properties.of(Material.STONE).sound(SoundType.SOUL_SOIL).strength(2.5f, 3f).harvestTool(ToolType.PICKAXE).harvestLevel(1).requiresCorrectToolForDrops().lightLevel(lightValue));
-        BlockState defaultBlockState = this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, Boolean.valueOf(false));
+        BlockState defaultBlockState = this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false);
         this.registerDefaultState(defaultBlockState);
     }
 
