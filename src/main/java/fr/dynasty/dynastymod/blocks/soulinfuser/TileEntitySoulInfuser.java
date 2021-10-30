@@ -226,7 +226,7 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
 
     @Override
     public void setItem(int index, ItemStack stack) {
-        items.set(index, stack);
+        this.items.set(index, stack);
     }
 
     @Override
@@ -238,7 +238,7 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
 
     @Override
     public void clearContent() {
-        items.clear();
+        this.items.clear();
     }
 
     @Override
