@@ -44,10 +44,6 @@ public class BlockSoulInfuser extends ContainerBlock {
         BlockState defaultBlockState = this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, Boolean.valueOf(false));
         this.registerDefaultState(defaultBlockState);
     }
-    // --- The block changes its appearance depending on how many of the furnace slots have burning fuel in them
-    //  In order to do that, we add a blockstate for each state (0 -> 4), each with a corresponding model.  We also change the blockLight emitted.
-
-    // ---------------------
 
     @Override
     public boolean hasTileEntity(BlockState state) {
