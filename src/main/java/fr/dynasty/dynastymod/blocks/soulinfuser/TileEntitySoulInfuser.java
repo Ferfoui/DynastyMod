@@ -141,6 +141,8 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
     }
 
     private void finishWork(InfusingRecipe recipe, ItemStack current, ItemStack output) {
+        if (recipe != getRecipe()) return;
+
         if (!current.isEmpty()) {
             current.grow(output.getCount());
         } else {
