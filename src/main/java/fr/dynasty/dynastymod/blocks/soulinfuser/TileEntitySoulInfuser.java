@@ -83,9 +83,7 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
 
     @Override
     public void tick() {
-        if (this.level == null || this.level.isClientSide) {
-            return;
-        }
+        if (this.level == null || this.level.isClientSide) return;
 
         InfusingRecipe recipe = getRecipe();
         if (recipe != null) {
