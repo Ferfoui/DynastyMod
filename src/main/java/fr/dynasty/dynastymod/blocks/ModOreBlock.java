@@ -13,6 +13,7 @@ public class ModOreBlock extends OreBlock {
         super(properties);
     }
 
+    @Override
     protected int xpOnDrop(Random random){
         if (this == ModBlocks.AZURITE_ORE.get()) {
             return MathHelper.nextInt(random, 1, 4);
