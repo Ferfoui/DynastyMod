@@ -2,7 +2,7 @@ package fr.dynasty.dynastymod.init;
 
 import fr.dynasty.dynastymod.DynastyMod;
 import fr.dynasty.dynastymod.blocks.ModOreBlock;
-import fr.dynasty.dynastymod.blocks.soulinfuser.BlockSoulInfuser;
+import fr.dynasty.dynastymod.blocks.soulinfuser.SoulInfuserBlock;
 import fr.dynasty.dynastymod.utils.ModItemGroups;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
@@ -34,7 +34,7 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> SOUL_STONE = createBlock("soul_stone", () -> new Block(AbstractBlock.Properties.of(Material.STONE, MaterialColor.COLOR_BROWN).sound(SoundType.SOUL_SOIL).strength(1.5f, 5f).speedFactor(0.1F).harvestTool(ToolType.PICKAXE).harvestLevel(1).requiresCorrectToolForDrops()));
 
-    public static final RegistryObject<Block> SOUL_INFUSER = createBlock("soul_infuser", () -> new BlockSoulInfuser(litBlockEmission(13)));
+    public static final RegistryObject<Block> SOUL_INFUSER = createBlock("soul_infuser", () -> new SoulInfuserBlock(litBlockEmission(13)));
 
     public static final RegistryObject<Block> PAPYRUS = createBlock("papyrus", () -> new FlowerBlock(Effects.DAMAGE_RESISTANCE, 5, AbstractBlock.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
 

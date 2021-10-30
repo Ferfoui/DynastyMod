@@ -29,7 +29,7 @@ import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
 import javax.annotation.Nullable;
 
-public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedInventory, ITickableTileEntity {
+public class SoulInfuserTileEntity extends LockableTileEntity implements ISidedInventory, ITickableTileEntity {
 
     private final int DEFAULT_INFUSING_TIME = 200;
     
@@ -71,7 +71,7 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
         }
     };
 
-    public TileEntitySoulInfuser() {
+    public SoulInfuserTileEntity() {
         super(ModTileEntities.SOUL_INFUSER_TILE_ENTITY.get());
         this.handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
         this.items = NonNullList.withSize(3, ItemStack.EMPTY);
@@ -137,7 +137,7 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
             finishWork(recipe, current, output);
         }
 
-        sendUpdate(this.getBlockState().setValue(BlockSoulInfuser.LIT, true));
+        sendUpdate(this.getBlockState().setValue(SoulInfuserBlock.LIT, true));
     }
 
     private void finishWork(InfusingRecipe recipe, ItemStack current, ItemStack output) {
@@ -161,7 +161,7 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
     private void stopWork() {
         this.progress = 0;
         this.infusingTime = DEFAULT_INFUSING_TIME;
-        sendUpdate(this.getBlockState().setValue(BlockSoulInfuser.LIT, false));
+        sendUpdate(this.getBlockState().setValue(SoulInfuserBlock.LIT, false));
     }
 
     private void sendUpdate(BlockState newState) {
@@ -195,7 +195,7 @@ public class TileEntitySoulInfuser extends LockableTileEntity implements ISidedI
 
     @Override
     protected Container createMenu(int id, PlayerInventory playerInventory) {
-        return new ContainerSoulInfuser(id, playerInventory, this, this.fields);
+        return new SoulInfuserContainer(id, playerInventory, this, this.fields);
     }
 
     @Override

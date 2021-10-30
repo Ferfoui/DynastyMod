@@ -8,21 +8,16 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.stats.Stats;
-import net.minecraft.tileentity.FurnaceTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -34,12 +29,12 @@ import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.function.ToIntFunction;
 
-public class BlockSoulInfuser extends ContainerBlock {
+public class SoulInfuserBlock extends ContainerBlock {
 
     public static final DirectionProperty FACING = HorizontalBlock.FACING;
     public static final BooleanProperty LIT = BlockStateProperties.LIT;
 
-    public BlockSoulInfuser(ToIntFunction<BlockState> lightValue) {
+    public SoulInfuserBlock(ToIntFunction<BlockState> lightValue) {
         super(AbstractBlock.Properties.of(Material.STONE).sound(SoundType.SOUL_SOIL).strength(2.5f, 3f).harvestTool(ToolType.PICKAXE).harvestLevel(1).requiresCorrectToolForDrops().lightLevel(lightValue));
         BlockState defaultBlockState = this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(LIT, false);
         this.registerDefaultState(defaultBlockState);
@@ -58,7 +53,7 @@ public class BlockSoulInfuser extends ContainerBlock {
     @Nullable
     @Override
     public TileEntity newBlockEntity(IBlockReader world) {
-        return new TileEntitySoulInfuser();
+        return new SoulInfuserTileEntity();
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -95,8 +90,8 @@ public class BlockSoulInfuser extends ContainerBlock {
 
     private void interactWith(World world, BlockPos pos, PlayerEntity player) {
         TileEntity tileEntity = world.getBlockEntity(pos);
-        if (tileEntity instanceof TileEntitySoulInfuser && player instanceof ServerPlayerEntity) {
-            TileEntitySoulInfuser te = (TileEntitySoulInfuser) tileEntity;
+        if (tileEntity instanceof SoulInfuserTileEntity && player instanceof ServerPlayerEntity) {
+            SoulInfuserTileEntity te = (SoulInfuserTileEntity) tileEntity;
             player.awardStat(ModStats.INTERACT_WITH_SOUL_INFUSER);
             NetworkHooks.openGui((ServerPlayerEntity) player, te, te::encodeExtraData);
         }

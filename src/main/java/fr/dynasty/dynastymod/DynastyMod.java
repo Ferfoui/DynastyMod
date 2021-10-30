@@ -1,7 +1,7 @@
 package fr.dynasty.dynastymod;
 
 import fr.dynasty.dynastymod.biome.ModBiomes;
-import fr.dynasty.dynastymod.blocks.soulinfuser.ScreenSoulInfuser;
+import fr.dynasty.dynastymod.blocks.soulinfuser.SoulInfuserScreen;
 import fr.dynasty.dynastymod.init.*;
 import fr.dynasty.dynastymod.init.ModRecipes;
 import net.minecraft.client.gui.ScreenManager;
@@ -80,7 +80,7 @@ public class DynastyMod {
         bus.addListener(ModKeyBindings::onKeyPress);
 
         //screen
-        ScreenManager.register(ModContainers.SOUL_INFUSER_CONTAINER.get(), ScreenSoulInfuser::new);
+        ScreenManager.register(ModContainers.SOUL_INFUSER_CONTAINER.get(), SoulInfuserScreen::new);
 
     }
 

@@ -14,15 +14,15 @@ import net.minecraft.util.IntArray;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class ContainerSoulInfuser extends Container {
+public class SoulInfuserContainer extends Container {
     private final IInventory inventory;
     private final IIntArray fields;
 
-    public ContainerSoulInfuser(int id, PlayerInventory playerInventory, PacketBuffer buffer) {
-        this(id, playerInventory, new TileEntitySoulInfuser(), new IntArray(buffer.readByte()));
+    public SoulInfuserContainer(int id, PlayerInventory playerInventory, PacketBuffer buffer) {
+        this(id, playerInventory, new SoulInfuserTileEntity(), new IntArray(buffer.readByte()));
     }
 
-    public ContainerSoulInfuser(int id, PlayerInventory playerInventory, IInventory inventory, IIntArray fields) {
+    public SoulInfuserContainer(int id, PlayerInventory playerInventory, IInventory inventory, IIntArray fields) {
         super(ModContainers.SOUL_INFUSER_CONTAINER.get(), id);
         this.inventory = inventory;
         this.fields = fields;
