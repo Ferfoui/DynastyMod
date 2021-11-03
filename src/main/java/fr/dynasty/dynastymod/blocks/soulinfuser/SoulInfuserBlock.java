@@ -1,6 +1,5 @@
 package fr.dynasty.dynastymod.blocks.soulinfuser;
 
-import fr.dynasty.dynastymod.utils.ModStats;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
@@ -92,7 +91,7 @@ public class SoulInfuserBlock extends ContainerBlock {
         TileEntity tileEntity = world.getBlockEntity(pos);
         if (tileEntity instanceof SoulInfuserTileEntity && player instanceof ServerPlayerEntity) {
             SoulInfuserTileEntity te = (SoulInfuserTileEntity) tileEntity;
-            player.awardStat(ModStats.INTERACT_WITH_SOUL_INFUSER);
+            //player.awardStat(ModStats.INTERACT_WITH_SOUL_INFUSER);
             NetworkHooks.openGui((ServerPlayerEntity) player, te, te::encodeExtraData);
         }
     }

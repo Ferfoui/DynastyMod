@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves",
+  "textures": {
+    "all": "dynastymod:block/palm_leaves"
+  }
+}

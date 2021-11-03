@@ -4,6 +4,7 @@ import fr.dynasty.dynastymod.DynastyMod;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.feature.structure.StructureFeatures;
+import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -38,8 +39,7 @@ public class ModBiomes {
         DefaultBiomeFeatures.addSurfaceFreezing(biomegenerationsettings$builder);
 
         return (new Biome.Builder()).precipitation(Biome.RainType.NONE).biomeCategory(Biome.Category.DESERT)
-                .depth(depth)
-                .scale(scale)
+                .depth(depth).scale(scale)
                 .temperature(temperature)
                 .downfall(0.0f)
                 .specialEffects((new BiomeAmbience.Builder())

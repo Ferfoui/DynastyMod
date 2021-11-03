@@ -26,6 +26,15 @@
 
   "block.dynastymod.soul_infuser": "Infuseur d'Âmes",
 
+  "block.dynastymod.palm_log": "Bûches de Palmier",
+  "block.dynastymod.palm_wood": "Bois de Palmier",
+  "block.dynastymod.palm_planks": "Planche de Palmier",
+  "block.dynastymod.stripped_palm_log": "Stripped Palm Log",
+  "block.dynastymod.stripped_palm_wood": "Stripped Palm Wood",
+  "block.dynastymod.palm_leaves": "Feuilles de Palmier",
+  "block.dynastymod.palm_sapling": "Pousse de Palmier",
+
+
   "item.dynastymod.raska_fang": "Croc de Raska",
 
 

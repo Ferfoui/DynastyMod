@@ -1,10 +1,17 @@
 package fr.dynasty.dynastymod;
 
+import com.google.common.collect.ImmutableMap;
 import fr.dynasty.dynastymod.biome.ModBiomes;
+import fr.dynasty.dynastymod.biome.ModSurfaceBuilder;
 import fr.dynasty.dynastymod.blocks.soulinfuser.SoulInfuserScreen;
 import fr.dynasty.dynastymod.init.*;
 import fr.dynasty.dynastymod.init.ModRecipes;
+import fr.dynasty.dynastymod.world.gen.ModFeatures;
+import net.minecraft.block.Block;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
+import net.minecraft.item.AxeItem;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -51,12 +58,19 @@ public class DynastyMod {
         ModContainers.CONTAINERS.register(bus);
         ModRecipes.register(bus);
         ModBiomes.BIOMES.register(bus);
+        ModTreePlacer.FoliageType.FOLIAGE_PLACERS.register(bus);
+        ModSurfaceBuilder.SURFACE_BUILDERS.register(bus);
 
         BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(RegistryKey.create(Registry.BIOME_REGISTRY, rl("oasis")), 5));
 
     }
 
     private void setup(FMLCommonSetupEvent e) {
+        e.enqueueWork(() -> {
+            AxeItem.STRIPABLES = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.STRIPABLES)
+                    .put(ModBlocks.PALM_LOG.get(), ModBlocks.STRIPPED_PALM_LOG.get())
+                    .put(ModBlocks.PALM_WOOD.get(), ModBlocks.STRIPPED_PALM_WOOD.get()).build();
+        });
 
         IEventBus bus = MinecraftForge.EVENT_BUS;
 
@@ -72,6 +86,12 @@ public class DynastyMod {
     }
 
     private void clientSetup(FMLClientSetupEvent e) {
+        e.enqueueWork(() -> {
+            RenderTypeLookup.setRenderLayer(ModBlocks.PAPYRUS.get(), RenderType.cutout());
+
+            RenderTypeLookup.setRenderLayer(ModBlocks.PALM_LEAVES.get(), RenderType.cutout());
+            RenderTypeLookup.setRenderLayer(ModBlocks.PALM_SAPLING.get(), RenderType.cutout());
+        });
 
         IEventBus bus = MinecraftForge.EVENT_BUS;
 
