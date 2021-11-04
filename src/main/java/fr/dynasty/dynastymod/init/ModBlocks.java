@@ -45,7 +45,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> PALM_LEAVES = createBlock("palm_leaves", () -> new LeavesBlock(AbstractBlock.Properties.of(Material.LEAVES).strength(0.2f).sound(SoundType.GRASS).noOcclusion()));
     public static final RegistryObject<Block> PALM_SAPLING = createBlock("palm_sapling", () -> new SaplingBlock(new PalmTree(), AbstractBlock.Properties.copy(Blocks.OAK_SAPLING)));
 
-    public static final RegistryObject<Block> PAPYRUS = createBlock("papyrus", () -> new FlowerBlock(Effects.DAMAGE_RESISTANCE, 5, AbstractBlock.Properties.of(Material.PLANT).noCollission().instabreak().sound(SoundType.GRASS)));
+    public static final RegistryObject<Block> PAPYRUS = createBlock("papyrus", () -> new FlowerBlock(Effects.DAMAGE_RESISTANCE, 5, AbstractBlock.Properties.copy(Blocks.DANDELION)));
 
     private static RegistryObject<Block> createBlock(String name, Supplier<? extends Block> supplier){
         RegistryObject<Block> block = BLOCKS.register(name, supplier);

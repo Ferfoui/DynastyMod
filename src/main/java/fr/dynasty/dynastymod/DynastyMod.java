@@ -2,6 +2,7 @@ package fr.dynasty.dynastymod;
 
 import com.google.common.collect.ImmutableMap;
 import fr.dynasty.dynastymod.world.biome.ModBiomes;
+import fr.dynasty.dynastymod.world.gen.ModBiomeGeneration;
 import fr.dynasty.dynastymod.world.gen.surfacebuilders.ModSurfaceBuilder;
 import fr.dynasty.dynastymod.blocks.soulinfuser.SoulInfuserScreen;
 import fr.dynasty.dynastymod.init.*;
@@ -61,8 +62,6 @@ public class DynastyMod {
         ModTreePlacer.FoliageType.FOLIAGE_PLACERS.register(bus);
         ModSurfaceBuilder.SURFACE_BUILDERS.register(bus);
 
-        BiomeManager.addBiome(BiomeManager.BiomeType.DESERT, new BiomeManager.BiomeEntry(RegistryKey.create(Registry.BIOME_REGISTRY, rl("oasis")), 5));
-
     }
 
     private void setup(FMLCommonSetupEvent e) {
@@ -78,6 +77,8 @@ public class DynastyMod {
         ModFeatures features = new ModFeatures();
         features.init();
         bus.register(features);
+
+        ModBiomeGeneration.generateBiome();
 
         //network
         /*int index = 0;

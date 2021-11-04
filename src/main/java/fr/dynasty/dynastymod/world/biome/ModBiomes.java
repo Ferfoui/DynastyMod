@@ -15,7 +15,7 @@ public class ModBiomes {
 
     public static final DeferredRegister<Biome> BIOMES = DeferredRegister.create(ForgeRegistries.BIOMES, DynastyMod.MODID);
 
-    public static final RegistryObject<Biome> OASIS = BIOMES.register("oasis", () -> Maker.oasisBiome(0.225f, 0.25f, 1.5f));
+    public static final RegistryObject<Biome> OASIS = BIOMES.register("oasis", () -> Maker.oasisBiome(0.125f, 0.10f, 1.5f));
 
 
     public static class Maker {
@@ -27,7 +27,8 @@ public class ModBiomes {
             BiomeGenerationSettings.Builder biomegenerationsettings$builder = (new BiomeGenerationSettings.Builder()).surfaceBuilder(ModConfiguredSurfaceBuilder.OASIS);
             DefaultBiomeFeatures.addDefaultOverworldLandStructures(biomegenerationsettings$builder);
             biomegenerationsettings$builder.addStructureStart(StructureFeatures.RUINED_PORTAL_DESERT);
-            biomegenerationsettings$builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ModFeatures.PALM_TREE);
+            biomegenerationsettings$builder.addStructureStart(StructureFeatures.VILLAGE_DESERT);
+            //biomegenerationsettings$builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ModFeatures.PALM_TREE);
             DefaultBiomeFeatures.addDefaultCarvers(biomegenerationsettings$builder);
             DefaultBiomeFeatures.addDefaultLakes(biomegenerationsettings$builder);
             DefaultBiomeFeatures.addDesertLakes(biomegenerationsettings$builder);

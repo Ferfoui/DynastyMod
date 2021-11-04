@@ -23,6 +23,8 @@ public class ModItems {
 
     public static final RegistryObject<Item> PAPYRUS_FIBER = ITEMS.register("papyrus_fiber", () -> new Item(new Item.Properties().tab(ModItemGroups.TAB_DYNASTYMOD)));
 
+    public static final RegistryObject<Item> DATE = ITEMS.register("date", () -> new Item(new Item.Properties().tab(ModItemGroups.TAB_DYNASTYMOD)));
+
     public static final RegistryObject<Item> RASKA_FANG = ITEMS.register("raska_fang", () -> new Item(new Item.Properties().tab(ModItemGroups.TAB_DYNASTYMOD)));
 
 }

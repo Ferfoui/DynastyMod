@@ -2,7 +2,6 @@ package fr.dynasty.dynastymod.world.gen;
 
 import fr.dynasty.dynastymod.init.ModBlocks;
 import fr.dynasty.dynastymod.world.gen.foliageplacer.PalmFoliagePlacer;
-import fr.dynasty.dynastymod.world.gen.trunkplacer.RootedTrunkPlacer;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.biome.Biome;
@@ -20,7 +19,7 @@ public class ModFeatures {
     public ConfiguredFeature<?, ?> ORE_AZURITE;
     public ConfiguredFeature<?, ?> ORE_SELENITE;
     public ConfiguredFeature<?, ?> ORE_SOLARITE;
-    public ConfiguredFeature<?, ?> FLOWER_PAPYRUS;
+    public static ConfiguredFeature<?, ?> FLOWER_PAPYRUS;
     public static ConfiguredFeature<BaseTreeFeatureConfig, ?> PALM_TREE;
 
     public void init() {
@@ -39,13 +38,15 @@ public class ModFeatures {
                         new SimpleBlockStateProvider(ModBlocks.PALM_LOG.get().defaultBlockState()),
                         new SimpleBlockStateProvider(ModBlocks.PALM_LEAVES.get().defaultBlockState()),
                         new PalmFoliagePlacer(FeatureSpread.fixed(2), FeatureSpread.fixed(0), FeatureSpread.fixed(2)),
-                        new StraightTrunkPlacer(5, 2, 2),
+                        new StraightTrunkPlacer(5, 3, 2),
                         new TwoLayerFeature(1, 0, 1)))
                 .ignoreVines().build()));
 
 
-        FLOWER_PAPYRUS = register("flower_papyrus", Feature.FLOWER.configured((new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.PAPYRUS.get().defaultBlockState()), SimpleBlockPlacer.INSTANCE))
-                .tries(64).build()));
+        FLOWER_PAPYRUS = Feature.FLOWER.configured((
+                new BlockClusterFeatureConfig.Builder(new SimpleBlockStateProvider(ModBlocks.PAPYRUS.get().defaultBlockState()), SimpleBlockPlacer.INSTANCE))
+                        .tries(12).build())
+                .decorated(Features.Placements.HEIGHTMAP_SQUARE).count(1);
 
     }
 
@@ -63,9 +64,6 @@ public class ModFeatures {
                     generation.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ORE_AZURITE);
                     generation.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, FLOWER_PAPYRUS);
                 }
-                if (e.getCategory() == Biome.Category.SAVANNA) {
-                    generation.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, FLOWER_PAPYRUS);
-                }
 
                 generation.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ORE_SELENITE);
                 generation.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ORE_SOLARITE);
@@ -73,7 +71,8 @@ public class ModFeatures {
             }
         }
 
-        //ModTreeGeneration.generateTrees(e);
+        ModFlowerGeneration.generateFlower(e);
+        ModTreeGeneration.generateTrees(e);
     }
 
 }
