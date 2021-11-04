@@ -1,8 +1,8 @@
 package fr.dynasty.dynastymod;
 
 import com.google.common.collect.ImmutableMap;
-import fr.dynasty.dynastymod.biome.ModBiomes;
-import fr.dynasty.dynastymod.biome.ModSurfaceBuilder;
+import fr.dynasty.dynastymod.world.biome.ModBiomes;
+import fr.dynasty.dynastymod.world.gen.surfacebuilders.ModSurfaceBuilder;
 import fr.dynasty.dynastymod.blocks.soulinfuser.SoulInfuserScreen;
 import fr.dynasty.dynastymod.init.*;
 import fr.dynasty.dynastymod.init.ModRecipes;

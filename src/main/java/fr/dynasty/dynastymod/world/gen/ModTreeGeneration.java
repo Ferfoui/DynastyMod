@@ -1,6 +1,5 @@
 package fr.dynasty.dynastymod.world.gen;
 
-import fr.dynasty.dynastymod.biome.ModBiomes;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
@@ -22,7 +21,7 @@ public class ModTreeGeneration {
         RegistryKey<Biome> key = RegistryKey.create(Registry.BIOME_REGISTRY, e.getName());
         Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(key);
 
-        if (e.getName() == ModBiomes.OASIS.getId()) {
+        if (types.contains(BiomeDictionary.Type.SANDY)) {
             List<Supplier<ConfiguredFeature<?, ?>>> base = e.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION);
 
             base.add(() -> ModFeatures.PALM_TREE.decorated(Features.Placements.HEIGHTMAP_SQUARE)

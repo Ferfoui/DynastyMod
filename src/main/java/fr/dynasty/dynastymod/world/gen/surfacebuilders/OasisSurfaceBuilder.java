@@ -1,6 +1,7 @@
-package fr.dynasty.dynastymod.biome;
+package fr.dynasty.dynastymod.world.gen.surfacebuilders;
 
 import com.mojang.serialization.Codec;
+import fr.dynasty.dynastymod.world.gen.surfacebuilders.ModSurfaceBuilder;
 import net.minecraft.block.BlockState;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunk;
@@ -20,7 +21,7 @@ public class OasisSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfig> {
         } else if (noise > -0.5D) {
             SurfaceBuilder.DEFAULT.apply(random, chunk, biome, x, z, terrainHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, SurfaceBuilder.CONFIG_DESERT);
         } else {
-            SurfaceBuilder.DEFAULT.apply(random, chunk, biome, x, z, terrainHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, ModSurfaceBuilder.CONFIG_OASIS);
+            SurfaceBuilder.DEFAULT.apply(random, chunk, biome, x, z, terrainHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, ModSurfaceBuilder.Config.OASIS);
         }
 
     }

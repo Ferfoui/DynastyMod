@@ -1,10 +1,10 @@
-package fr.dynasty.dynastymod.biome;
+package fr.dynasty.dynastymod.world.biome;
 
 import fr.dynasty.dynastymod.DynastyMod;
+import fr.dynasty.dynastymod.world.gen.surfacebuilders.ModConfiguredSurfaceBuilder;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.feature.structure.StructureFeatures;
-import net.minecraft.world.gen.surfacebuilders.ConfiguredSurfaceBuilders;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
