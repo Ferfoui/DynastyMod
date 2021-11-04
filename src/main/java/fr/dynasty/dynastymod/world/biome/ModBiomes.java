@@ -17,7 +17,7 @@ public class ModBiomes {
 
     public static final RegistryObject<Biome> OASIS = BIOMES.register("oasis", () -> Maker.oasisBiome(0.225f, 0.25f, 1.5f));
 
-    
+
     public static class Maker {
 
         public static Biome oasisBiome(float depth, float scale, float temperature) {
