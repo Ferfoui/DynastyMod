@@ -15,7 +15,7 @@ public class ModSurfaceBuilder {
         private static final BlockState DIRT = Blocks.DIRT.defaultBlockState();
         private static final BlockState GRAVEL = Blocks.GRAVEL.defaultBlockState();
 
-    public static final SurfaceBuilderConfig OASIS = new SurfaceBuilderConfig(SAND, DIRT, GRAVEL);
+        public static final SurfaceBuilderConfig OASIS = new SurfaceBuilderConfig(SAND, DIRT, GRAVEL);
     }
 
     public static final DeferredRegister<SurfaceBuilder<?>> SURFACE_BUILDERS = DeferredRegister.create(ForgeRegistries.SURFACE_BUILDERS, DynastyMod.MODID);
