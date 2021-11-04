@@ -73,7 +73,7 @@ public class ModFeatures {
             }
         }
 
-        ModTreeGeneration.generateTrees(e);
+        //ModTreeGeneration.generateTrees(e);
     }
 
 }
