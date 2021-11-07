@@ -34,7 +34,7 @@ public class DynastyMod {
     //modid
     public static final String MODID = "dynastymod";
 
-    // Directly reference a log4j logger.
+    //Directly reference a log4j logger.
     private static final Logger LOGGER = LogManager.getLogger();
 
     //resourceLocation of mod
