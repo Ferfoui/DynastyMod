@@ -1,6 +1,7 @@
 package fr.dynasty.dynastymod;
 
 import com.google.common.collect.ImmutableMap;
+import fr.dynasty.dynastymod.world.ModWorldEvents;
 import fr.dynasty.dynastymod.world.biome.ModBiomes;
 import fr.dynasty.dynastymod.world.gen.ModBiomeGeneration;
 import fr.dynasty.dynastymod.world.gen.surfacebuilders.ModSurfaceBuilder;
@@ -8,6 +9,7 @@ import fr.dynasty.dynastymod.blocks.soulinfuser.SoulInfuserScreen;
 import fr.dynasty.dynastymod.init.*;
 import fr.dynasty.dynastymod.init.ModRecipes;
 import fr.dynasty.dynastymod.world.gen.ModFeatures;
+import fr.dynasty.dynastymod.world.structure.ModStructures;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
@@ -61,6 +63,7 @@ public class DynastyMod {
         ModBiomes.BIOMES.register(bus);
         ModTreePlacer.FoliageType.FOLIAGE_PLACERS.register(bus);
         ModSurfaceBuilder.SURFACE_BUILDERS.register(bus);
+        ModStructures.STRUCTURES.register(bus);
 
     }
 
@@ -69,16 +72,21 @@ public class DynastyMod {
             AxeItem.STRIPABLES = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.STRIPABLES)
                     .put(ModBlocks.PALM_LOG.get(), ModBlocks.STRIPPED_PALM_LOG.get())
                     .put(ModBlocks.PALM_WOOD.get(), ModBlocks.STRIPPED_PALM_WOOD.get()).build();
+
+
+            ModStructures.setupStructures();
+
+            ModBiomeGeneration.generateBiome();
+
         });
 
         IEventBus bus = MinecraftForge.EVENT_BUS;
 
         //features
-        ModFeatures features = new ModFeatures();
-        features.init();
-        bus.register(features);
+        ModWorldEvents worldEvents = new ModWorldEvents();
+        worldEvents.initFeatures();
+        bus.register(worldEvents);
 
-        ModBiomeGeneration.generateBiome();
 
         //network
         /*int index = 0;
@@ -92,6 +100,9 @@ public class DynastyMod {
 
             RenderTypeLookup.setRenderLayer(ModBlocks.PALM_LEAVES.get(), RenderType.cutout());
             RenderTypeLookup.setRenderLayer(ModBlocks.PALM_SAPLING.get(), RenderType.cutout());
+
+            //screen
+            ScreenManager.register(ModContainers.SOUL_INFUSER_CONTAINER.get(), SoulInfuserScreen::new);
         });
 
         IEventBus bus = MinecraftForge.EVENT_BUS;
@@ -99,9 +110,6 @@ public class DynastyMod {
         //key
         ModKeyBindings.register();
         bus.addListener(ModKeyBindings::onKeyPress);
-
-        //screen
-        ScreenManager.register(ModContainers.SOUL_INFUSER_CONTAINER.get(), SoulInfuserScreen::new);
 
     }
 

@@ -12,13 +12,12 @@ import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.trunkplacer.StraightTrunkPlacer;
 import net.minecraftforge.common.world.BiomeGenerationSettingsBuilder;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class ModFeatures {
 
-    public ConfiguredFeature<?, ?> ORE_AZURITE;
-    public ConfiguredFeature<?, ?> ORE_SELENITE;
-    public ConfiguredFeature<?, ?> ORE_SOLARITE;
+    public static ConfiguredFeature<?, ?> ORE_AZURITE;
+    public static ConfiguredFeature<?, ?> ORE_SELENITE;
+    public static ConfiguredFeature<?, ?> ORE_SOLARITE;
     public static ConfiguredFeature<?, ?> FLOWER_PAPYRUS;
     public static ConfiguredFeature<BaseTreeFeatureConfig, ?> PALM_TREE;
 
@@ -54,25 +53,21 @@ public class ModFeatures {
         return Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, name, feature);
     }
 
-    @SubscribeEvent
-    public void biomeLoading(final BiomeLoadingEvent e){
+
+    public static void generateOre(final BiomeLoadingEvent e) {
         BiomeGenerationSettingsBuilder generation = e.getGeneration();
 
         if (e.getCategory() != Biome.Category.THEEND) {
             if (e.getCategory() != Biome.Category.NETHER) {
                 if (e.getCategory() == Biome.Category.DESERT) {
                     generation.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ORE_AZURITE);
-                    generation.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, FLOWER_PAPYRUS);
                 }
-
                 generation.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ORE_SELENITE);
                 generation.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, ORE_SOLARITE);
-
             }
         }
-
-        ModFlowerGeneration.generateFlower(e);
-        ModTreeGeneration.generateTrees(e);
     }
+
+
 
 }

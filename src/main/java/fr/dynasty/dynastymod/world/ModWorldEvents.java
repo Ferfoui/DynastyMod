@@ -1,0 +1,76 @@
+package fr.dynasty.dynastymod.world;
+
+import com.mojang.serialization.Codec;
+import fr.dynasty.dynastymod.DynastyMod;
+import fr.dynasty.dynastymod.world.gen.ModFeatures;
+import fr.dynasty.dynastymod.world.gen.ModFlowerGeneration;
+import fr.dynasty.dynastymod.world.gen.ModStructureGeneration;
+import fr.dynasty.dynastymod.world.gen.ModTreeGeneration;
+import fr.dynasty.dynastymod.world.structure.ModStructures;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.FlatChunkGenerator;
+import net.minecraft.world.gen.feature.structure.Structure;
+import net.minecraft.world.gen.settings.DimensionStructuresSettings;
+import net.minecraft.world.gen.settings.StructureSeparationSettings;
+import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.event.world.BiomeLoadingEvent;
+import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
+import org.apache.logging.log4j.LogManager;
+
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
+
+@Mod.EventBusSubscriber(modid = DynastyMod.MODID)
+public class ModWorldEvents {
+
+    public void initFeatures() {
+        ModFeatures features = new ModFeatures();
+        features.init();
+    }
+
+    @SubscribeEvent
+    public void biomeLoading(final BiomeLoadingEvent e){
+        ModStructureGeneration.generateStructures(e);
+
+        ModFeatures.generateOre(e);
+        ModFlowerGeneration.generateFlower(e);
+        ModTreeGeneration.generateTrees(e);
+    }
+
+
+    @SubscribeEvent
+    public void addDimensionalSpacing(final WorldEvent.Load e) {
+        if (e.getWorld() instanceof ServerWorld) {
+            ServerWorld serverWorld = (ServerWorld) e.getWorld();
+
+            try {
+                Method GETCODEC_METHOD = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
+                ResourceLocation cgRL = Registry.CHUNK_GENERATOR.getKey((Codec<? extends ChunkGenerator>)GETCODEC_METHOD.invoke(serverWorld.getChunkSource().generator));
+
+                if (cgRL != null && cgRL.getNamespace().equals("terraforged")) {
+                    return;
+                }
+            } catch (Exception ex) {
+                LogManager.getLogger().error("Was unable to check if " + serverWorld.dimension().location() + " is using Terraforged's ChunkGenerator.");
+            }
+
+            // Prevent spawning our structure in Vanilla's superflat world
+            if (serverWorld.getChunkSource().generator instanceof FlatChunkGenerator && serverWorld.dimension().equals(World.OVERWORLD)) {
+                return;
+            }
+
+            // Adding our Structure to the Map
+            Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkSource().generator.getSettings().structureConfig());
+            tempMap.putIfAbsent(ModStructures.OASIS.get(), DimensionStructuresSettings.DEFAULTS.get(ModStructures.OASIS.get()));
+            serverWorld.getChunkSource().generator.getSettings().structureConfig = tempMap;
+
+        }
+    }
+}

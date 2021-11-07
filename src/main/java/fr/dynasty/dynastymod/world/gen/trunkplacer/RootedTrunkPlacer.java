@@ -18,8 +18,7 @@ import java.util.Random;
 import java.util.Set;
 
 public class RootedTrunkPlacer extends AbstractTrunkPlacer {
-    public static final Codec<RootedTrunkPlacer> CODEC = RecordCodecBuilder.create((me) ->
-            trunkPlacerParts(me).apply(me, RootedTrunkPlacer::new));
+    public static final Codec<RootedTrunkPlacer> CODEC = RecordCodecBuilder.create((me) -> trunkPlacerParts(me).apply(me, RootedTrunkPlacer::new));
 
     public RootedTrunkPlacer(int baseHeight, int firstRandHeight, int secondRandHeight) {
         super(baseHeight, firstRandHeight, secondRandHeight);
@@ -27,7 +26,7 @@ public class RootedTrunkPlacer extends AbstractTrunkPlacer {
 
     @Override
     protected TrunkPlacerType<?> type() {
-        return ModTreePlacer.TrunkType.PALM_TRUNK_PLACER;
+        return ModTreePlacer.TrunkType.ROOTED_TRUNK_PLACER;
     }
 
     @Override

@@ -20,7 +20,7 @@ public class ModTreePlacer {
     }
 
     public static class TrunkType {
-        public static final TrunkPlacerType<RootedTrunkPlacer> PALM_TRUNK_PLACER = register("palm_trunk_placer", RootedTrunkPlacer.CODEC);
+        public static final TrunkPlacerType<RootedTrunkPlacer> ROOTED_TRUNK_PLACER = register("rooted_trunk_placer", RootedTrunkPlacer.CODEC);
 
         private static <P extends AbstractTrunkPlacer> TrunkPlacerType<P> register(String name, Codec<P> codec) {
             return Registry.register(Registry.TRUNK_PLACER_TYPES, DynastyMod.rl(name) , new TrunkPlacerType<>(codec));
