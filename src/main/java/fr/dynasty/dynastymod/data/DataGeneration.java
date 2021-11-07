@@ -21,6 +21,14 @@ public class DataGeneration {
         DataGenerator generator = e.getGenerator();
         ExistingFileHelper existingFileHelper = e.getExistingFileHelper();
 
+        if (e.includeClient()) {
+
+            LanguageGenerator.generateLanguages(generator);
+
+            generator.addProvider(new BlockStateGenerator(generator, existingFileHelper));
+            generator.addProvider(new ItemModelGenerator(generator, existingFileHelper));
+        }
+        
         if (e.includeServer()) {
 
             BlockTagsGenerator blockTags = new BlockTagsGenerator(generator, existingFileHelper);
@@ -30,14 +38,5 @@ public class DataGeneration {
             generator.addProvider(new RecipeGenerator(generator));
             generator.addProvider(new LootTableGenerator(generator));
         }
-
-        if (e.includeClient()) {
-
-            LanguageGenerator.generateLanguages(generator);
-
-            generator.addProvider(new BlockStateGenerator(generator, existingFileHelper));
-            generator.addProvider(new ItemModelGenerator(generator, existingFileHelper));
-        }
     }
-
 }
