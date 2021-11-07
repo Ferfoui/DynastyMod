@@ -8,31 +8,34 @@ import fr.dynasty.dynastymod.world.gen.surfacebuilders.ModSurfaceBuilder;
 import fr.dynasty.dynastymod.blocks.soulinfuser.SoulInfuserScreen;
 import fr.dynasty.dynastymod.init.*;
 import fr.dynasty.dynastymod.init.ModRecipes;
-import fr.dynasty.dynastymod.world.gen.ModFeatures;
 import fr.dynasty.dynastymod.world.structure.ModStructures;
 import net.minecraft.block.Block;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.AxeItem;
-import net.minecraft.util.RegistryKey;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
-import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.server.FMLServerStartingEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod(DynastyMod.MODID)
 public class DynastyMod {
 
     //modid
     public static final String MODID = "dynastymod";
+
+    // Directly reference a log4j logger.
+    private static final Logger LOGGER = LogManager.getLogger();
 
     //resourceLocation of mod
     public static ResourceLocation rl(String path) {
@@ -48,13 +51,13 @@ public class DynastyMod {
 
 
     public DynastyMod() {
+        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
+        bus.addListener(this::setup);
+        bus.addListener(this::clientSetup);
         MinecraftForge.EVENT_BUS.register(this);
 
         //registration
-        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         ModItems.ITEMS.register(bus);
         ModBlocks.BLOCKS.register(bus);
         ModTileEntities.TILE_ENTITIES.register(bus);
@@ -74,18 +77,13 @@ public class DynastyMod {
                     .put(ModBlocks.PALM_WOOD.get(), ModBlocks.STRIPPED_PALM_WOOD.get()).build();
 
 
+            ModWorldEvents.initFeatures();
+
             ModStructures.setupStructures();
 
             ModBiomeGeneration.generateBiome();
 
         });
-
-        IEventBus bus = MinecraftForge.EVENT_BUS;
-
-        //features
-        ModWorldEvents worldEvents = new ModWorldEvents();
-        worldEvents.initFeatures();
-        bus.register(worldEvents);
 
 
         //network
@@ -113,4 +111,9 @@ public class DynastyMod {
 
     }
 
+    //when the server start
+    @SubscribeEvent
+    public void onServerStarting(FMLServerStartingEvent e) {
+        LOGGER.info("HELLO from server starting");
+    }
 }
