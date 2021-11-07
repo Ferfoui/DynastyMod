@@ -30,13 +30,13 @@ import java.util.Map;
 @Mod.EventBusSubscriber(modid = DynastyMod.MODID)
 public class ModWorldEvents {
 
-    public void initFeatures() {
+    public static void initFeatures() {
         ModFeatures features = new ModFeatures();
         features.init();
     }
 
     @SubscribeEvent
-    public void biomeLoading(final BiomeLoadingEvent e){
+    public static void biomeLoading(final BiomeLoadingEvent e){
         ModStructureGeneration.generateStructures(e);
 
         ModFeatures.generateOre(e);
@@ -46,7 +46,7 @@ public class ModWorldEvents {
 
 
     @SubscribeEvent
-    public void addDimensionalSpacing(final WorldEvent.Load e) {
+    public static void addDimensionalSpacing(final WorldEvent.Load e) {
         if (e.getWorld() instanceof ServerWorld) {
             ServerWorld serverWorld = (ServerWorld) e.getWorld();
 
