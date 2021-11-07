@@ -100,14 +100,10 @@ public class DynastyMod {
 
             //screen
             ScreenManager.register(ModContainers.SOUL_INFUSER_CONTAINER.get(), SoulInfuserScreen::new);
+
+            //key
+            ModKeyBindings.register();
         });
-
-        IEventBus bus = MinecraftForge.EVENT_BUS;
-
-        //key
-        ModKeyBindings.register();
-        bus.addListener(ModKeyBindings::onKeyPress);
-
     }
 
     //when the server start
