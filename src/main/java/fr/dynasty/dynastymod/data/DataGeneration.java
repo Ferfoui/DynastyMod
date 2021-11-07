@@ -28,7 +28,7 @@ public class DataGeneration {
             generator.addProvider(new BlockStateGenerator(generator, existingFileHelper));
             generator.addProvider(new ItemModelGenerator(generator, existingFileHelper));
         }
-        
+
         if (e.includeServer()) {
 
             BlockTagsGenerator blockTags = new BlockTagsGenerator(generator, existingFileHelper);
