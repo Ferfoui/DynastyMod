@@ -2,6 +2,7 @@ package fr.dynasty.dynastymod.data;
 
 import fr.dynasty.dynastymod.DynastyMod;
 import fr.dynasty.dynastymod.data.client.*;
+import fr.dynasty.dynastymod.data.client.language.LanguageGenerator;
 import fr.dynasty.dynastymod.data.loottable.LootTableGenerator;
 import fr.dynasty.dynastymod.data.recipe.RecipeGenerator;
 import fr.dynasty.dynastymod.data.tag.*;
@@ -31,6 +32,9 @@ public class DataGeneration {
         }
 
         if (e.includeClient()) {
+
+            LanguageGenerator.generateLanguage(generator);
+
             generator.addProvider(new BlockStateGenerator(generator, existingFileHelper));
             generator.addProvider(new ItemModelGenerator(generator, existingFileHelper));
         }
