@@ -85,10 +85,9 @@ public class DynastyMod {
 
         });
 
-
         //network
-        /*int index = 0;
-        NETWORK.registerMessage(index)*/
+        /*int networkIndex = 0;
+        NETWORK.registerMessage(networkIndex)*/
 
     }
 
