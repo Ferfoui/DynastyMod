@@ -8,7 +8,7 @@ import net.minecraft.data.DataGenerator;
 
 public class LanguageGenerator {
 
-    public static void generateLanguage(DataGenerator generator) {
+    public static void generateLanguages(DataGenerator generator) {
         generator.addProvider(new EnUs(generator));
         //generator.addProvider(new FrFr(generator)); //accents is not respected
     }

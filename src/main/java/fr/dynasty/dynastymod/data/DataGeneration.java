@@ -33,7 +33,7 @@ public class DataGeneration {
 
         if (e.includeClient()) {
 
-            LanguageGenerator.generateLanguage(generator);
+            LanguageGenerator.generateLanguages(generator);
 
             generator.addProvider(new BlockStateGenerator(generator, existingFileHelper));
             generator.addProvider(new ItemModelGenerator(generator, existingFileHelper));
