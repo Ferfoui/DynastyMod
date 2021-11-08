@@ -2,6 +2,7 @@ package fr.dynasty.dynastymod.init;
 
 import fr.dynasty.dynastymod.DynastyMod;
 import fr.dynasty.dynastymod.utils.ModItemGroups;
+import net.minecraft.item.Food;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
@@ -23,7 +24,8 @@ public class ModItems {
 
     public static final RegistryObject<Item> PAPYRUS_FIBER = ITEMS.register("papyrus_fiber", () -> new Item(new Item.Properties().tab(ModItemGroups.TAB_DYNASTYMOD)));
 
-    public static final RegistryObject<Item> DATE = ITEMS.register("date", () -> new Item(new Item.Properties().tab(ModItemGroups.TAB_DYNASTYMOD)));
+    public static final RegistryObject<Item> DATE = ITEMS.register("date", () -> new Item(new Item.Properties().tab(ModItemGroups.TAB_DYNASTYMOD)
+            .food(new Food.Builder().nutrition(3).saturationMod(0.3f).build())));
 
     public static final RegistryObject<Item> RASKA_FANG = ITEMS.register("raska_fang", () -> new Item(new Item.Properties().tab(ModItemGroups.TAB_DYNASTYMOD)));
 
