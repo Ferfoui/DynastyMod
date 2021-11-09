@@ -2,8 +2,7 @@ package fr.dynasty.dynastymod.data.tag;
 
 import fr.dynasty.dynastymod.DynastyMod;
 import fr.dynasty.dynastymod.init.ModItems;
-import fr.dynasty.dynastymod.utils.tag.ModBlockTags;
-import fr.dynasty.dynastymod.utils.tag.ModItemTags;
+import fr.dynasty.dynastymod.utils.ModTags;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
@@ -21,9 +20,9 @@ public class ItemTagsGenerator extends ItemTagsProvider {
 
     @Override
     protected void addTags() {
-        copy(ModBlockTags.CELESTIAL_BLOCKS, ModItemTags.CELESTIAL_BLOCKS);
-        tag(ModItemTags.INFUSER_ITEMS).add(ModItems.SOUL.get());
-        copy(ModBlockTags.PALM_LOGS, ModItemTags.PALM_LOGS);
+        copy(ModTags.Blocks.CELESTIAL_BLOCKS, ModTags.Items.CELESTIAL_BLOCKS);
+        tag(ModTags.Items.INFUSER_ITEMS).add(ModItems.SOUL.get());
+        copy(ModTags.Blocks.PALM_LOGS, ModTags.Items.PALM_LOGS);
 
         copy(BlockTags.PLANKS, ItemTags.PLANKS);
         copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);

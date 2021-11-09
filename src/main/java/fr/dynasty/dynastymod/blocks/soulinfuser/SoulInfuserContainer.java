@@ -1,6 +1,7 @@
 package fr.dynasty.dynastymod.blocks.soulinfuser;
 
 import fr.dynasty.dynastymod.init.ModContainers;
+import fr.dynasty.dynastymod.utils.ModTags;
 import fr.dynasty.dynastymod.utils.tag.ModItemTags;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
@@ -110,7 +111,7 @@ public class SoulInfuserContainer extends Container {
     }
 
     private boolean isInfuser(ItemStack stack) {
-        return stack.getItem().is(ModItemTags.INFUSER_ITEMS);
+        return stack.getItem().is(ModTags.Items.INFUSER_ITEMS);
     }
 
     @Override
