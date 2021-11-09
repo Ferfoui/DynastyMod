@@ -2,7 +2,6 @@ package fr.dynasty.dynastymod.blocks.soulinfuser;
 
 import fr.dynasty.dynastymod.init.ModContainers;
 import fr.dynasty.dynastymod.utils.ModTags;
-import fr.dynasty.dynastymod.utils.tag.ModItemTags;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
