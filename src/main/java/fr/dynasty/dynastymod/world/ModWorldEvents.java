@@ -2,10 +2,7 @@ package fr.dynasty.dynastymod.world;
 
 import com.mojang.serialization.Codec;
 import fr.dynasty.dynastymod.DynastyMod;
-import fr.dynasty.dynastymod.world.gen.ModFeatures;
-import fr.dynasty.dynastymod.world.gen.ModFlowerGeneration;
-import fr.dynasty.dynastymod.world.gen.ModStructureGeneration;
-import fr.dynasty.dynastymod.world.gen.ModTreeGeneration;
+import fr.dynasty.dynastymod.world.gen.*;
 import fr.dynasty.dynastymod.world.structure.ModStructures;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
@@ -31,15 +28,14 @@ import java.util.Map;
 public class ModWorldEvents {
 
     public static void initFeatures() {
-        ModFeatures features = new ModFeatures();
-        features.init();
+        new ModFeatures().init();
     }
 
     @SubscribeEvent
     public static void biomeLoading(final BiomeLoadingEvent e){
         ModStructureGeneration.generateStructures(e);
 
-        ModFeatures.generateOre(e);
+        ModOreGeneration.generateOres(e);
         ModFlowerGeneration.generateFlower(e);
         ModTreeGeneration.generateTrees(e);
     }
