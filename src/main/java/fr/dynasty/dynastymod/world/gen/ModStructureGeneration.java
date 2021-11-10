@@ -14,12 +14,13 @@ import java.util.Set;
 import java.util.function.Supplier;
 
 public class ModStructureGeneration {
-    public static void generateStructures(final BiomeLoadingEvent e) {
-        RegistryKey<Biome> key = RegistryKey.create(Registry.BIOME_REGISTRY, e.getName());
+
+    public static void generateStructures(final BiomeLoadingEvent event) {
+        RegistryKey<Biome> key = RegistryKey.create(Registry.BIOME_REGISTRY, event.getName());
         Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(key);
 
         if(types.contains(BiomeDictionary.Type.SANDY)) {
-            List<Supplier<StructureFeature<?, ?>>> structures = e.getGeneration().getStructures();
+            List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 
             structures.add(() -> ModStructures.OASIS.get().configured(IFeatureConfig.NONE));
         }
