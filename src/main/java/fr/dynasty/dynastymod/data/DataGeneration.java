@@ -16,12 +16,12 @@ import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 public class DataGeneration {
 
     @SubscribeEvent
-    public static void gatherData(final GatherDataEvent e) {
+    public static void gatherData(final GatherDataEvent event) {
 
-        DataGenerator generator = e.getGenerator();
-        ExistingFileHelper existingFileHelper = e.getExistingFileHelper();
+        DataGenerator generator = event.getGenerator();
+        ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
 
-        if (e.includeClient()) {
+        if (event.includeClient()) {
 
             LanguageGenerator.generateLanguages(generator);
 
@@ -29,7 +29,7 @@ public class DataGeneration {
             generator.addProvider(new ItemModelGenerator(generator, existingFileHelper));
         }
 
-        if (e.includeServer()) {
+        if (event.includeServer()) {
 
             BlockTagsGenerator blockTags = new BlockTagsGenerator(generator, existingFileHelper);
 
