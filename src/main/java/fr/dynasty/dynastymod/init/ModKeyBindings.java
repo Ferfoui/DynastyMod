@@ -21,7 +21,7 @@ public class ModKeyBindings {
 
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
-    public static void onKeyPress(InputEvent.KeyInputEvent e) {
+    public static void onKeyPress(InputEvent.KeyInputEvent event) {
         if(KEY_ONE.isDown()){
             System.out.println("TEST");
         }
