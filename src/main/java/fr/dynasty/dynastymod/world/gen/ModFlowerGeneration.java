@@ -14,15 +14,14 @@ import java.util.function.Supplier;
 
 public class ModFlowerGeneration {
 
-    public static void generateFlower(final BiomeLoadingEvent e) {
-        RegistryKey<Biome> key = RegistryKey.create(Registry.BIOME_REGISTRY, e.getName());
+    public static void generateFlower(final BiomeLoadingEvent event) {
+        RegistryKey<Biome> key = RegistryKey.create(Registry.BIOME_REGISTRY, event.getName());
         Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(key);
 
         if (types.contains(BiomeDictionary.Type.SANDY)) {
-            List<Supplier<ConfiguredFeature<?, ?>>> base = e.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION);
+            List<Supplier<ConfiguredFeature<?, ?>>> base = event.getGeneration().getFeatures(GenerationStage.Decoration.VEGETAL_DECORATION);
 
             base.add(() -> ModFeatures.FLOWER_PAPYRUS);
         }
     }
-
 }
