@@ -70,8 +70,8 @@ public class DynastyMod {
 
     }
 
-    private void setup(FMLCommonSetupEvent e) {
-        e.enqueueWork(() -> {
+    private void setup(FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
             AxeItem.STRIPABLES = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.STRIPABLES)
                     .put(ModBlocks.PALM_LOG.get(), ModBlocks.STRIPPED_PALM_LOG.get())
                     .put(ModBlocks.PALM_WOOD.get(), ModBlocks.STRIPPED_PALM_WOOD.get()).build();
@@ -91,8 +91,8 @@ public class DynastyMod {
 
     }
 
-    private void clientSetup(FMLClientSetupEvent e) {
-        e.enqueueWork(() -> {
+    private void clientSetup(FMLClientSetupEvent event) {
+        event.enqueueWork(() -> {
             RenderTypeLookup.setRenderLayer(ModBlocks.PAPYRUS.get(), RenderType.cutout());
 
             RenderTypeLookup.setRenderLayer(ModBlocks.PALM_LEAVES.get(), RenderType.cutout());
