@@ -92,8 +92,8 @@ public class LanguageGenerator {
             add(ModBlocks.PALM_LOG.get(), "Bûches de Palmier");
             add(ModBlocks.PALM_WOOD.get(), "Bois de Palmier");
             add(ModBlocks.PALM_PLANKS.get(), "Planche de Palmier");
-            add(ModBlocks.STRIPPED_PALM_LOG.get(), "Stripped Palm Log");
-            add(ModBlocks.STRIPPED_PALM_WOOD.get(), "Stripped Palm Wood");
+            add(ModBlocks.STRIPPED_PALM_LOG.get(), "Bûche de Palmier écorcé");
+            add(ModBlocks.STRIPPED_PALM_WOOD.get(), "Bois de Palmier écorcé");
             add(ModBlocks.PALM_LEAVES.get(), "Feuilles de Palmier");
             add(ModBlocks.PALM_SAPLING.get(), "Pousse de Palmier");
             add(ModBlocks.SOUL_STONE.get(), "Pierre des Âmes");
