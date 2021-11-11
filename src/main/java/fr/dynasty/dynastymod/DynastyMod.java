@@ -1,6 +1,7 @@
 package fr.dynasty.dynastymod;
 
 import com.google.common.collect.ImmutableMap;
+import fr.dynasty.dynastymod.blocks.ModWoodTypes;
 import fr.dynasty.dynastymod.world.ModWorldEvents;
 import fr.dynasty.dynastymod.world.biome.ModBiomes;
 import fr.dynasty.dynastymod.world.gen.ModBiomeGeneration;
@@ -10,6 +11,7 @@ import fr.dynasty.dynastymod.init.*;
 import fr.dynasty.dynastymod.init.ModRecipes;
 import fr.dynasty.dynastymod.world.structure.ModStructures;
 import net.minecraft.block.Block;
+import net.minecraft.block.WoodType;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
@@ -78,8 +80,9 @@ public class DynastyMod {
 
 
             ModWorldEvents.initFeatures();
-
             ModStructures.setupStructures();
+
+            WoodType.register(ModWoodTypes.PALM);
 
             ModBiomeGeneration.generateBiome();
 
