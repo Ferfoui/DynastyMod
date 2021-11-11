@@ -22,8 +22,8 @@ public class BlockStateGenerator extends BlockStateProvider {
         //simpleBlock(ModBlocks.SOLARITE_BLOCK.get());
 
         simpleBlock(ModBlocks.AZURITE_ORE.get());
-        //simpleBlock(ModBlocks.SELENITE_ORE.get());
-        //simpleBlock(ModBlocks.SOLARITE_ORE.get());
+        simpleBlock(ModBlocks.SELENITE_ORE.get());
+        simpleBlock(ModBlocks.SOLARITE_ORE.get());
 
         //logBlock((RotatedPillarBlock) ModBlocks.PALM_LOG.get());
         //logBlock((RotatedPillarBlock) ModBlocks.PALM_WOOD.get());
