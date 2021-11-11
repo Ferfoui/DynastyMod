@@ -42,9 +42,9 @@ public class ModWorldEvents {
 
 
     @SubscribeEvent
-    public static void addDimensionalSpacing(final WorldEvent.Load e) {
-        if (e.getWorld() instanceof ServerWorld) {
-            ServerWorld serverWorld = (ServerWorld) e.getWorld();
+    public static void addDimensionalSpacing(final WorldEvent.Load event) {
+        if (event.getWorld() instanceof ServerWorld) {
+            ServerWorld serverWorld = (ServerWorld) event.getWorld();
 
             try {
                 Method GETCODEC_METHOD = ObfuscationReflectionHelper.findMethod(ChunkGenerator.class, "func_230347_a_");
@@ -53,7 +53,7 @@ public class ModWorldEvents {
                 if (cgRL != null && cgRL.getNamespace().equals("terraforged")) {
                     return;
                 }
-            } catch (Exception ex) {
+            } catch (Exception e) {
                 LogManager.getLogger().error("Was unable to check if " + serverWorld.dimension().location() + " is using Terraforged's ChunkGenerator.");
             }
 
