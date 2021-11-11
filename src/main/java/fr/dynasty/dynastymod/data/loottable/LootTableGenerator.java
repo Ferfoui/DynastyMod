@@ -55,6 +55,7 @@ public class LootTableGenerator extends LootTableProvider {
 
         @Override
         protected void addTables() {
+
             dropSelf(ModBlocks.PURIFIED_GOLD_BLOCK.get());
 
             dropSelf(ModBlocks.AZURITE_BLOCK.get());
@@ -82,7 +83,6 @@ public class LootTableGenerator extends LootTableProvider {
             dropSelf(ModBlocks.PALM_SAPLING.get());
 
             dropSelf(ModBlocks.PAPYRUS.get());
-
 
         }
 
