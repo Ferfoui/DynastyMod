@@ -72,7 +72,7 @@ public class DynastyMod {
 
     }
 
-    private void setup(FMLCommonSetupEvent event) {
+    private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             AxeItem.STRIPABLES = new ImmutableMap.Builder<Block, Block>().putAll(AxeItem.STRIPABLES)
                     .put(ModBlocks.PALM_LOG.get(), ModBlocks.STRIPPED_PALM_LOG.get())
@@ -94,7 +94,7 @@ public class DynastyMod {
 
     }
 
-    private void clientSetup(FMLClientSetupEvent event) {
+    private void clientSetup(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             RenderTypeLookup.setRenderLayer(ModBlocks.PAPYRUS.get(), RenderType.cutout());
 
@@ -111,7 +111,7 @@ public class DynastyMod {
 
     //when the server start
     @SubscribeEvent
-    public void onServerStarting(FMLServerStartingEvent e) {
+    public void onServerStarting(FMLServerStartingEvent event) {
         LOGGER.info("HELLO from server starting");
     }
 }
