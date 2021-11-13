@@ -28,6 +28,7 @@ import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.function.ToIntFunction;
 
+@SuppressWarnings("deprecation")
 public class SoulInfuserBlock extends ContainerBlock {
 
     public static final DirectionProperty FACING = HorizontalBlock.FACING;
@@ -77,7 +78,6 @@ public class SoulInfuserBlock extends ContainerBlock {
         }
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public ActionResultType use(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTrace) {
         if (world.isClientSide) {
@@ -102,7 +102,6 @@ public class SoulInfuserBlock extends ContainerBlock {
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void onRemove(BlockState state1, World world, BlockPos pos, BlockState state2, boolean isMoving) {
         if (!state1.is(state2.getBlock())) {
@@ -115,13 +114,11 @@ public class SoulInfuserBlock extends ContainerBlock {
         }
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public boolean hasAnalogOutputSignal(BlockState state) {
         return true;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public int getAnalogOutputSignal(BlockState state, World world, BlockPos pos) {
         return Container.getRedstoneSignalFromBlockEntity(world.getBlockEntity(pos));
@@ -132,13 +129,11 @@ public class SoulInfuserBlock extends ContainerBlock {
         return BlockRenderType.MODEL;
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public BlockState rotate(BlockState state, Rotation rotation) {
         return state.setValue(FACING, rotation.rotate(state.getValue(FACING)));
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public BlockState mirror(BlockState state, Mirror mirrorIn) {
         return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
