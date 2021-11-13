@@ -22,7 +22,7 @@ public class ModOreBlock extends OreBlock {
         } else if (this == ModBlocks.SOLARITE_ORE.get()){
             return MathHelper.nextInt(random, 3, 7);
         } else {
-            return 0;
+            return super.xpOnDrop(random);
         }
     }
 
