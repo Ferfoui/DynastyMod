@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/cube_bottom_top",
   "textures": {
-    "top": "minecraft:block/soul_stone_top",
-    "bottom": "minecraft:block/soul_stone_bottom",
-    "side": "minecraft:block/soul_stone"
+    "top": "dynastymod:block/soul_stone_top",
+    "bottom": "dynastymod:block/soul_stone_bottom",
+    "side": "dynastymod:block/soul_stone"
   }
 }

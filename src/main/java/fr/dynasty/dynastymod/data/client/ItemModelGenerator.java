@@ -37,6 +37,7 @@ public class ItemModelGenerator extends ItemModelProvider {
 
 
         ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
+        ModelFile itemHandheld = getExistingFile(mcLoc("item/handheld"));
 
         //items
         builder("purified_gold_ingot", itemGenerated);
@@ -50,11 +51,16 @@ public class ItemModelGenerator extends ItemModelProvider {
 
         builder("soul", itemGenerated);
 
+        //builder("date", itemGenerated);
+
         //builder("papyrus_fiber", itemGenerated);
 
-        //builder("palm_sapling", itemGenerated);
+        builder("raska_fang", itemGenerated);
 
-        //builder("raska_fang", itemGenerated);
+        //block cross
+        //builder("palm_sapling", itemGenerated);
+        //builder("papyrus", itemGenerated);
+
     }
 
     private void builder(String name , ModelFile itemGenerated) {
