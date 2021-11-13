@@ -40,7 +40,6 @@ public class ModWorldEvents {
         ModTreeGeneration.generateTrees(e);
     }
 
-
     @SubscribeEvent
     public static void addDimensionalSpacing(final WorldEvent.Load event) {
         if (event.getWorld() instanceof ServerWorld) {
@@ -65,7 +64,7 @@ public class ModWorldEvents {
             // Adding our Structure to the Map
             Map<Structure<?>, StructureSeparationSettings> tempMap = new HashMap<>(serverWorld.getChunkSource().generator.getSettings().structureConfig());
             tempMap.putIfAbsent(ModStructures.OASIS.get(), DimensionStructuresSettings.DEFAULTS.get(ModStructures.OASIS.get()));
-            
+
             serverWorld.getChunkSource().generator.getSettings().structureConfig = tempMap;
 
         }
