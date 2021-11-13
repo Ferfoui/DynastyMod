@@ -27,7 +27,7 @@ public class ModStructures {
     /* this modifies the seed of the structure so no two structures always spawn over each-other.
     Make this large and unique. */
     public static void setupStructures() {
-        setupMapSpacingAndLand(OASIS.get(), new StructureSeparationSettings(100,30, 1234567890), true);
+        setupMapSpacingAndLand(OASIS.get(), new StructureSeparationSettings(100,30, 1205948754), true);
     }
 
     /**
@@ -100,5 +100,4 @@ public class ModStructures {
             }
         });
     }
-
 }

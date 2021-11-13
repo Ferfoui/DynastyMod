@@ -9,6 +9,7 @@ import fr.dynasty.dynastymod.world.gen.surfacebuilders.ModSurfaceBuilder;
 import fr.dynasty.dynastymod.blocks.soulinfuser.SoulInfuserScreen;
 import fr.dynasty.dynastymod.init.*;
 import fr.dynasty.dynastymod.init.ModRecipes;
+import fr.dynasty.dynastymod.world.structure.ModConfiguredStructures;
 import fr.dynasty.dynastymod.world.structure.ModStructures;
 import net.minecraft.block.Block;
 import net.minecraft.block.WoodType;
@@ -37,7 +38,7 @@ public class DynastyMod {
     public static final String MODID = "dynastymod";
 
     //Directly reference a log4j logger.
-    private static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
 
     //resourceLocation of mod
     public static ResourceLocation rl(String path) {
@@ -78,9 +79,10 @@ public class DynastyMod {
                     .put(ModBlocks.PALM_LOG.get(), ModBlocks.STRIPPED_PALM_LOG.get())
                     .put(ModBlocks.PALM_WOOD.get(), ModBlocks.STRIPPED_PALM_WOOD.get()).build();
 
-
             ModWorldEvents.initFeatures();
+
             ModStructures.setupStructures();
+            ModConfiguredStructures.registerConfiguredStructures();
 
             WoodType.register(ModWoodTypes.PALM);
 

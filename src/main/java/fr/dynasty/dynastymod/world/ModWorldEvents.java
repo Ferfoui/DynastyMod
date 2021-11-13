@@ -54,7 +54,7 @@ public class ModWorldEvents {
                     return;
                 }
             } catch (Exception e) {
-                LogManager.getLogger().error("Was unable to check if " + serverWorld.dimension().location() + " is using Terraforged's ChunkGenerator.");
+                DynastyMod.LOGGER.error("Was unable to check if " + serverWorld.dimension().location() + " is using Terraforged's ChunkGenerator.");
             }
 
             // Prevent spawning our structure in Vanilla's superflat world
