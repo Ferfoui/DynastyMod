@@ -60,7 +60,7 @@ public class OasisStructure extends Structure<NoFeatureConfig> {
             // Turns the chunk coordinates into actual coordinates we can use. (Gets center of that chunk)
             int x = (chunkX << 4) + 7;
             int z = (chunkZ << 4) + 7;
-            BlockPos blockpos = new BlockPos(x, -5, z);
+            BlockPos blockpos = new BlockPos(x, 0, z);
 
             JigsawManager.addPieces(dynamicRegistryManager,
                     new VillageConfig(() -> dynamicRegistryManager.registryOrThrow(Registry.TEMPLATE_POOL_REGISTRY).get(DynastyMod.rl("oasis/start_pool")), 10),

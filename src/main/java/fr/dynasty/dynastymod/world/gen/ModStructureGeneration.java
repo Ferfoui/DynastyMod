@@ -18,7 +18,7 @@ public class ModStructureGeneration {
         RegistryKey<Biome> key = RegistryKey.create(Registry.BIOME_REGISTRY, event.getName());
         Set<BiomeDictionary.Type> types = BiomeDictionary.getTypes(key);
 
-        if(types.contains(BiomeDictionary.Type.SANDY)) {
+        if(event.getCategory() == Biome.Category.DESERT) {
             List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 
             structures.add(() -> ModConfiguredStructures.CONFIGURED_OASIS);
