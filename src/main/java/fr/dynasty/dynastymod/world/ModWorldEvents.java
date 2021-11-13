@@ -39,6 +39,7 @@ public class ModWorldEvents {
         ModTreeGeneration.generateTrees(e);
     }
 
+    @SuppressWarnings("unchecked")
     @SubscribeEvent
     public static void addDimensionalSpacing(final WorldEvent.Load event) {
         if (event.getWorld() instanceof ServerWorld) {
