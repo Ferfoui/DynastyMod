@@ -18,7 +18,6 @@ import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-import org.apache.logging.log4j.LogManager;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
