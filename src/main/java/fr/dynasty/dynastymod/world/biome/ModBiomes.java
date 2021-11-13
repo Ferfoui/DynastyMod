@@ -28,7 +28,6 @@ public class ModBiomes {
             DefaultBiomeFeatures.addDefaultOverworldLandStructures(biomegenerationsettings$builder);
             biomegenerationsettings$builder.addStructureStart(StructureFeatures.RUINED_PORTAL_DESERT);
             biomegenerationsettings$builder.addStructureStart(StructureFeatures.VILLAGE_DESERT);
-            //biomegenerationsettings$builder.addFeature(GenerationStage.Decoration.VEGETAL_DECORATION, ModFeatures.PALM_TREE);
             DefaultBiomeFeatures.addDefaultCarvers(biomegenerationsettings$builder);
             DefaultBiomeFeatures.addDefaultLakes(biomegenerationsettings$builder);
             DefaultBiomeFeatures.addDesertLakes(biomegenerationsettings$builder);
