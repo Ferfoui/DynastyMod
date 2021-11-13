@@ -1,10 +1,9 @@
 package fr.dynasty.dynastymod.world.gen;
 
-import fr.dynasty.dynastymod.world.structure.ModStructures;
+import fr.dynasty.dynastymod.world.structure.ModConfiguredStructures;
 import net.minecraft.util.RegistryKey;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.StructureFeature;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
@@ -22,7 +21,7 @@ public class ModStructureGeneration {
         if(types.contains(BiomeDictionary.Type.SANDY)) {
             List<Supplier<StructureFeature<?, ?>>> structures = event.getGeneration().getStructures();
 
-            structures.add(() -> ModStructures.OASIS.get().configured(IFeatureConfig.NONE));
+            structures.add(() -> ModConfiguredStructures.CONFIGURED_OASIS);
         }
     }
 }

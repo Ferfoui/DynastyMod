@@ -86,7 +86,7 @@ public class DynastyMod {
 
             WoodType.register(ModWoodTypes.PALM);
 
-            ModBiomeGeneration.generateBiome();
+            //ModBiomeGeneration.generateBiome();
 
         });
 
