@@ -2,9 +2,11 @@ package fr.dynasty.dynastymod.data.client.language;
 
 import fr.dynasty.dynastymod.DynastyMod;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.data.LanguageProvider;
 
 import java.util.function.Supplier;
@@ -41,6 +43,11 @@ public abstract class AbstractLanguageGenerator extends LanguageProvider {
         String path = key.getRegistryName().getPath();
         add(key, name);
         add("container." + namespace + "." + path, name);
+    }
+
+    public void addSign(String name, Block Sign1, Block Sign2) {
+        add(Sign1.getDescriptionId(), name + " Sign");
+        add(Sign2.getDescriptionId(), name + " Wall Sign");
     }
 
 }

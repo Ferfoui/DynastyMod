@@ -28,6 +28,7 @@ public class LanguageGenerator {
             add(ModItems.SOLARITE.get(), "Solarite");
             add(ModItems.SELENITE_FRAGMENT.get(), "Selenite Fragment");
             add(ModItems.SOLARITE_FRAGMENT.get(), "Solarite Fragment");
+            add(ModItems.PALM_SIGN.get(), "Palm Sign");
             add(ModItems.SOUL.get(), "Soul");
             add(ModItems.DATE.get(), "Date");
             add(ModItems.PAPYRUS_FIBER.get(), "Papyrus Fiber");
@@ -48,6 +49,7 @@ public class LanguageGenerator {
             add(ModBlocks.STRIPPED_PALM_WOOD.get(), "Stripped Palm Wood");
             add(ModBlocks.PALM_LEAVES.get(), "Palm Leaves");
             add(ModBlocks.PALM_SAPLING.get(), "Palm Sapling");
+            //addSign("Palm", ModBlocks.PALM_SIGN.get(), ModBlocks.PALM_WALL_SIGN.get());
             add(ModBlocks.SOUL_STONE.get(), "Soul Stone");
             add(ModBlocks.PAPYRUS.get(), "Papyrus");
 
@@ -76,6 +78,7 @@ public class LanguageGenerator {
             add(ModItems.SOLARITE.get(), "Solarite");
             add(ModItems.SELENITE_FRAGMENT.get(), "Fragment de Sélénite");
             add(ModItems.SOLARITE_FRAGMENT.get(), "Fragment de Solarite");
+            add(ModItems.PALM_SIGN.get(), "Palm Sign");
             add(ModItems.SOUL.get(), "Âme");
             add(ModItems.DATE.get(), "Datte");
             add(ModItems.PAPYRUS_FIBER.get(), "Fibre de Papyrus");
@@ -96,6 +99,8 @@ public class LanguageGenerator {
             add(ModBlocks.STRIPPED_PALM_WOOD.get(), "Bois de Palmier écorcé");
             add(ModBlocks.PALM_LEAVES.get(), "Feuilles de Palmier");
             add(ModBlocks.PALM_SAPLING.get(), "Pousse de Palmier");
+            addSign("Palm", ModBlocks.PALM_SIGN.get(), ModBlocks.PALM_WALL_SIGN.get());
+            add(ModBlocks.PALM_WALL_SIGN.get(), "Palm Wall Sign");
             add(ModBlocks.SOUL_STONE.get(), "Pierre des Âmes");
             add(ModBlocks.PAPYRUS.get(), "Papyrus");
 

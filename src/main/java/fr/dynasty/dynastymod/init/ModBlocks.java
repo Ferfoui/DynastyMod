@@ -2,6 +2,9 @@ package fr.dynasty.dynastymod.init;
 
 import fr.dynasty.dynastymod.DynastyMod;
 import fr.dynasty.dynastymod.blocks.ModOreBlock;
+import fr.dynasty.dynastymod.blocks.ModWoodTypes;
+import fr.dynasty.dynastymod.blocks.signs.ModStandingSignBlock;
+import fr.dynasty.dynastymod.blocks.signs.ModWallSignBlock;
 import fr.dynasty.dynastymod.blocks.soulinfuser.SoulInfuserBlock;
 import fr.dynasty.dynastymod.blocks.trees.PalmTree;
 import fr.dynasty.dynastymod.utils.ModItemGroups;
@@ -44,6 +47,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> PALM_PLANKS = createBlock("palm_planks", () -> new Block(AbstractBlock.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> PALM_LEAVES = createBlock("palm_leaves", () -> new LeavesBlock(AbstractBlock.Properties.of(Material.LEAVES).strength(0.2f).sound(SoundType.GRASS).noOcclusion()));
     public static final RegistryObject<Block> PALM_SAPLING = createBlock("palm_sapling", () -> new SaplingBlock(new PalmTree(), AbstractBlock.Properties.copy(Blocks.OAK_SAPLING)));
+
+    public static final RegistryObject<Block> PALM_SIGN = BLOCKS.register("palm_sign", () -> new ModStandingSignBlock(AbstractBlock.Properties.of(Material.WOOD), ModWoodTypes.PALM));
+    public static final RegistryObject<Block> PALM_WALL_SIGN = BLOCKS.register("palm_wall_sign", () -> new ModWallSignBlock(AbstractBlock.Properties.of(Material.WOOD), ModWoodTypes.PALM));
 
     public static final RegistryObject<Block> PAPYRUS = createBlock("papyrus", () -> new FlowerBlock(Effects.DAMAGE_RESISTANCE, 5, AbstractBlock.Properties.copy(Blocks.DANDELION)));
 

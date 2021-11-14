@@ -29,6 +29,7 @@ public class ItemTagsGenerator extends ItemTagsProvider {
         copy(BlockTags.LOGS, ItemTags.LOGS);
         copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
         copy(BlockTags.LEAVES, ItemTags.LEAVES);
+        copy(BlockTags.STANDING_SIGNS, ItemTags.SIGNS);
     }
 }
 

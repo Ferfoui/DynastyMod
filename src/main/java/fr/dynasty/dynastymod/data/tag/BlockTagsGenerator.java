@@ -26,6 +26,9 @@ public class BlockTagsGenerator extends BlockTagsProvider {
         tag(BlockTags.LOGS).addTag(BlockTags.LOGS_THAT_BURN);
         tag(BlockTags.SAPLINGS).add(ModBlocks.PALM_SAPLING.get());
         tag(BlockTags.LEAVES).add(ModBlocks.PALM_LEAVES.get());
+        tag(BlockTags.STANDING_SIGNS).add(ModBlocks.PALM_SIGN.get());
+        tag(BlockTags.WALL_SIGNS).add(ModBlocks.PALM_WALL_SIGN.get());
+        tag(BlockTags.SIGNS).addTag(BlockTags.STANDING_SIGNS).addTag(BlockTags.WALL_SIGNS);
     }
 
 }

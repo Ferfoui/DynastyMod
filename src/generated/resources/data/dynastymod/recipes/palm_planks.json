@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "dynastymod:palm_logs"
+    }
+  ],
+  "result": {
+    "item": "dynastymod:palm_planks",
+    "count": 4
+  }
+}

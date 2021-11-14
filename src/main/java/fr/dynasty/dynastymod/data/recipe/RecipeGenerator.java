@@ -3,13 +3,17 @@ package fr.dynasty.dynastymod.data.recipe;
 import fr.dynasty.dynastymod.DynastyMod;
 import fr.dynasty.dynastymod.init.ModBlocks;
 import fr.dynasty.dynastymod.init.ModItems;
+import fr.dynasty.dynastymod.utils.ModTags;
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
 import net.minecraft.advancements.criterion.PlacedBlockTrigger;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.*;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.util.IItemProvider;
 
 import java.util.function.Consumer;
 
@@ -103,6 +107,16 @@ public class RecipeGenerator extends RecipeProvider {
                 .define('X', ModBlocks.SOUL_STONE.get()).define('#', Blocks.SOUL_SOIL)
                 .define('B', Items.FLINT_AND_STEEL)
                 .unlockedBy("unlock", has(ModItems.SOUL.get()))
+                .save(consumer);
+
+        planksFromLogs(consumer, ModBlocks.PALM_PLANKS.get(), ModTags.Items.PALM_LOGS);
+
+        ShapedRecipeBuilder.shaped(ModItems.PALM_SIGN.get())
+                .pattern("XXX")
+                .pattern("XXX")
+                .pattern(" # ")
+                .define('X', ModBlocks.PALM_PLANKS.get()).define('#', Items.STICK)
+                .unlockedBy("unlock", has(ModBlocks.PALM_PLANKS.get()))
                 .save(consumer);
 
         ShapelessRecipeBuilder.shapeless(ModItems.PAPYRUS_FIBER.get(), 2)

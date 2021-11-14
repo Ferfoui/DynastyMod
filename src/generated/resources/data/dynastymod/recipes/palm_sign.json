@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XXX",
+    "XXX",
+    " # "
+  ],
+  "key": {
+    "X": {
+      "item": "dynastymod:palm_planks"
+    },
+    "#": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "dynastymod:palm_sign"
+  }
+}

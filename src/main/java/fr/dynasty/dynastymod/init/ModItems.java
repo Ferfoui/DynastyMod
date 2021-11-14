@@ -4,6 +4,7 @@ import fr.dynasty.dynastymod.DynastyMod;
 import fr.dynasty.dynastymod.utils.ModItemGroups;
 import net.minecraft.item.Food;
 import net.minecraft.item.Item;
+import net.minecraft.item.SignItem;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -21,6 +22,8 @@ public class ModItems {
 
     public static final RegistryObject<Item> SELENITE_FRAGMENT = ITEMS.register("selenite_fragment", () -> new Item(new Item.Properties().tab(ModItemGroups.TAB_DYNASTYMOD)));
     public static final RegistryObject<Item> SOLARITE_FRAGMENT = ITEMS.register("solarite_fragment", () -> new Item(new Item.Properties().tab(ModItemGroups.TAB_DYNASTYMOD)));
+
+    public static final RegistryObject<Item> PALM_SIGN = ITEMS.register("palm_sign", () -> new SignItem(new Item.Properties().stacksTo(16).tab(ModItemGroups.TAB_DYNASTYMOD), ModBlocks.PALM_SIGN.get(), ModBlocks.PALM_WALL_SIGN.get()));
 
     public static final RegistryObject<Item> PAPYRUS_FIBER = ITEMS.register("papyrus_fiber", () -> new Item(new Item.Properties().tab(ModItemGroups.TAB_DYNASTYMOD)));
 
