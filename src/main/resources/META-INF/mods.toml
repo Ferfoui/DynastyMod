@@ -59,8 +59,8 @@ Mod utilisé pour le serveur Minecraft Dynasty
     side="BOTH"
 
 [[dependencies.dynastymod]]
-modId="jei"
-mandatory=false
-versionRange="${jei_version_range}"
-ordering="AFTER"
-side="BOTH"
+    modId="jei"
+    mandatory=false
+    versionRange="${jei_version_range}"
+    ordering="AFTER"
+    side="BOTH"
