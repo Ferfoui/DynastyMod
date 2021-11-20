@@ -10,8 +10,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class ModItems {
 
-    
-
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, DynastyMod.MODID);
 
     public static final RegistryObject<Item> SOUL = ITEMS.register("soul", () -> new Item(new Item.Properties().stacksTo(16).tab(ModItemGroups.TAB_DYNASTYMOD)));
