@@ -32,6 +32,7 @@ public class LanguageGenerator {
             add(ModItems.SOUL.get(), "Soul");
             add(ModItems.DATE.get(), "Date");
             add(ModItems.PAPYRUS_FIBER.get(), "Papyrus Fiber");
+            add(ModItems.RICK_ASTLEY_MUSIC_DISC.get(), "Rick Astley Music Disc");
             add(ModItems.RASKA_FANG.get(), "Raska Fang");
 
             //Blocks
@@ -57,6 +58,8 @@ public class LanguageGenerator {
 
             //Others
             add(ModItemGroups.TAB_DYNASTYMOD, "DynastyMod");
+
+            addDescription(ModItems.RICK_ASTLEY_MUSIC_DISC.get(), "Never Gonna Give You Up");
 
             add(ModKeyBindings.KEY_ONE, "Test");
             addKeyCategory("Dynastymod");

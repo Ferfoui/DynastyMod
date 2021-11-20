@@ -2,6 +2,7 @@ package fr.dynasty.dynastymod;
 
 import com.google.common.collect.ImmutableMap;
 import fr.dynasty.dynastymod.blocks.ModWoodTypes;
+import fr.dynasty.dynastymod.utils.ModSoundEvents;
 import fr.dynasty.dynastymod.world.ModWorldEvents;
 import fr.dynasty.dynastymod.world.biome.ModBiomes;
 import fr.dynasty.dynastymod.world.gen.ModBiomeGeneration;
@@ -73,6 +74,7 @@ public class DynastyMod {
         ModTreePlacer.FoliageType.FOLIAGE_PLACERS.register(bus);
         ModSurfaceBuilder.SURFACE_BUILDERS.register(bus);
         ModStructures.STRUCTURES.register(bus);
+        ModSoundEvents.SOUND_EVENTS.register(bus);
 
     }
 

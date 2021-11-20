@@ -1,7 +1,9 @@
 package fr.dynasty.dynastymod.data.client;
 
 import fr.dynasty.dynastymod.DynastyMod;
+import fr.dynasty.dynastymod.init.ModItems;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -40,22 +42,24 @@ public class ItemModelGenerator extends ItemModelProvider {
         ModelFile itemHandheld = getExistingFile(mcLoc("item/handheld"));
 
         //items
-        builder("purified_gold_ingot", itemGenerated);
+        builder(ModItems.PURIFIED_GOLD_INGOT.get(), itemGenerated);
 
-        builder("azurite", itemGenerated);
+        builder(ModItems.AZURITE.get(), itemGenerated);
         //builder("selenite", itemGenerated);
         //builder("solarite", itemGenerated);
 
         //builder("selenite_fragment", itemGenerated);
         //builder("solarite_fragment", itemGenerated);
 
-        builder("soul", itemGenerated);
+        builder(ModItems.SOUL.get(), itemGenerated);
 
         //builder("date", itemGenerated);
 
         //builder("papyrus_fiber", itemGenerated);
 
-        builder("raska_fang", itemGenerated);
+        builder(ModItems.RICK_ASTLEY_MUSIC_DISC.get(), itemGenerated);
+
+        builder(ModItems.RASKA_FANG.get(), itemGenerated);
 
         //block cross
         //builder("palm_sapling", itemGenerated);
@@ -63,7 +67,12 @@ public class ItemModelGenerator extends ItemModelProvider {
 
     }
 
-    private void builder(String name , ModelFile itemGenerated) {
-        getBuilder(name).parent(itemGenerated).texture("layer0", "item/" + name);
+    private void builder(Item item, ModelFile model) {
+        getBuilder(item.getRegistryName().getPath()).parent(model).texture("layer0", "item/" + item);
     }
+
+    private void builder(String name, ModelFile model) {
+        getBuilder(name).parent(model).texture("layer0", "item/" + name);
+    }
+
 }

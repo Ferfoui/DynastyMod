@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.common.data.LanguageProvider;
@@ -48,6 +49,10 @@ public abstract class AbstractLanguageGenerator extends LanguageProvider {
     public void addSign(String name, Block Sign1, Block Sign2) {
         add(Sign1.getDescriptionId(), name + " Sign");
         add(Sign2.getDescriptionId(), name + " Wall Sign");
+    }
+
+    public void addDescription(Item key, String description) {
+        add(key.getDescriptionId() + ".desc", description);
     }
 
 }

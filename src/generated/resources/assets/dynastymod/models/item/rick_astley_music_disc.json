@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "dynastymod:item/rick_astley_music_disc"
+  }
+}
