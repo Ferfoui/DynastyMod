@@ -1,9 +1,8 @@
 {
-  "never_gonna_give_you_up": {
-    "subtitle": "dynastymod.never_gonna_give_you_up",
+  "rick_roll": {
     "sounds": [
       {
-        "name": "dynastymod:never_gonna_give_you_up",
+        "name": "dynastymod:rick_roll",
         "stream": true
       }
     ]
