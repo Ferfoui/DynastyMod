@@ -29,7 +29,7 @@ public class ModItems {
     public static final RegistryObject<Item> DATE = ITEMS.register("date", () -> new Item(new Item.Properties().tab(ModItemGroups.TAB_DYNASTYMOD)
             .food(new Food.Builder().nutrition(3).saturationMod(0.3f).build())));
 
-    public static final RegistryObject<Item> RICK_ASTLEY_MUSIC_DISC = ITEMS.register("rick_astley_music_disc", () -> new MusicDiscItem(1, ModSoundEvents.NEVER_GONNA_GIVE_YOU_UP, new Item.Properties().stacksTo(1).tab(ModItemGroups.TAB_DYNASTYMOD).rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> RICK_ASTLEY_MUSIC_DISC = ITEMS.register("rick_astley_music_disc", () -> new MusicDiscItem(15, ModSoundEvents.NEVER_GONNA_GIVE_YOU_UP, new Item.Properties().stacksTo(1).tab(ModItemGroups.TAB_DYNASTYMOD).rarity(Rarity.RARE)));
 
     public static final RegistryObject<Item> RASKA_FANG = ITEMS.register("raska_fang", () -> new Item(new Item.Properties().tab(ModItemGroups.TAB_DYNASTYMOD)));
 
