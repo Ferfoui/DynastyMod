@@ -1,6 +1,8 @@
 package fr.dynasty.dynastymod.init;
 
 import fr.dynasty.dynastymod.DynastyMod;
+import fr.dynasty.dynastymod.entity.ModEntityTypes;
+import fr.dynasty.dynastymod.item.custom.ModSpawnEggItem;
 import fr.dynasty.dynastymod.utils.ModItemGroups;
 import fr.dynasty.dynastymod.utils.ModSoundEvents;
 import net.minecraft.item.*;
@@ -32,5 +34,7 @@ public class ModItems {
     public static final RegistryObject<Item> RICK_ASTLEY_MUSIC_DISC = ITEMS.register("rick_astley_music_disc", () -> new MusicDiscItem(15, ModSoundEvents.NEVER_GONNA_GIVE_YOU_UP, new Item.Properties().stacksTo(1).tab(ModItemGroups.TAB_DYNASTYMOD).rarity(Rarity.RARE)));
 
     public static final RegistryObject<Item> RASKA_FANG = ITEMS.register("raska_fang", () -> new Item(new Item.Properties().tab(ModItemGroups.TAB_DYNASTYMOD)));
+
+    public static final RegistryObject<Item> MEGA_MUMMY_SPAWN_EGG = ITEMS.register("mega_mummy_spawn_egg", () -> new ModSpawnEggItem(ModEntityTypes.MEGA_MUMMY, 0xA28F69, 0xC49B71, new Item.Properties().tab(ItemGroup.TAB_MISC)));
 
 }

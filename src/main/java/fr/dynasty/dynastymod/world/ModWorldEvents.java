@@ -31,12 +31,14 @@ public class ModWorldEvents {
     }
 
     @SubscribeEvent
-    public static void biomeLoading(final BiomeLoadingEvent e){
-        ModStructureGeneration.generateStructures(e);
+    public static void biomeLoading(final BiomeLoadingEvent event){
+        ModStructureGeneration.generateStructures(event);
 
-        ModOreGeneration.generateOres(e);
-        ModFlowerGeneration.generateFlower(e);
-        ModTreeGeneration.generateTrees(e);
+        ModOreGeneration.generateOres(event);
+        ModFlowerGeneration.generateFlower(event);
+        ModTreeGeneration.generateTrees(event);
+
+        ModEntityGeneration.onEntitySpawn(event);
     }
 
     @SuppressWarnings("unchecked")

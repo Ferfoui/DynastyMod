@@ -2,6 +2,8 @@ package fr.dynasty.dynastymod;
 
 import com.google.common.collect.ImmutableMap;
 import fr.dynasty.dynastymod.blocks.ModWoodTypes;
+import fr.dynasty.dynastymod.entity.ModEntityTypes;
+import fr.dynasty.dynastymod.entity.render.MegaMummyRenderer;
 import fr.dynasty.dynastymod.utils.ModSoundEvents;
 import fr.dynasty.dynastymod.world.ModWorldEvents;
 import fr.dynasty.dynastymod.world.biome.ModBiomes;
@@ -25,6 +27,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -75,6 +78,7 @@ public class DynastyMod {
         ModSurfaceBuilder.SURFACE_BUILDERS.register(bus);
         ModStructures.STRUCTURES.register(bus);
         ModSoundEvents.SOUND_EVENTS.register(bus);
+        ModEntityTypes.ENTITY_TYPES.register(bus);
 
     }
 
@@ -119,6 +123,8 @@ public class DynastyMod {
             //key
             ModKeyBindings.register();
         });
+
+        RenderingRegistry.registerEntityRenderingHandler(ModEntityTypes.MEGA_MUMMY.get(), MegaMummyRenderer::new);
     }
 
     //when the server start

@@ -1,0 +1,44 @@
+{
+  "block.dynastymod.azurite_block": "Azurite Block",
+  "block.dynastymod.azurite_ore": "Azurite Ore",
+  "block.dynastymod.selenite_block": "Selenite Block",
+  "block.dynastymod.selenite_ore": "Selenite Ore",
+  "block.dynastymod.solarite_block": "Solarite Block",
+  "block.dynastymod.solarite_ore": "Solarite Ore",
+  "block.dynastymod.purified_gold_block": "Purified Gold Block",
+  "block.dynastymod.palm_log": "Palm Log",
+  "block.dynastymod.palm_wood": "Palm Wood",
+  "block.dynastymod.stripped_palm_log": "Stripped Palm Log",
+  "block.dynastymod.stripped_palm_wood": "Stripped Palm Wood",
+  "block.dynastymod.palm_leaves": "Palm Leaves",
+  "block.dynastymod.palm_sapling": "Palm Sapling",
+  "block.dynastymod.palm_planks": "Palm Planks",
+  "block.dynastymod.palm_sign": "Palm Sign",
+  "block.dynastymod.papyrus": "Papyrus",
+  "block.dynastymod.soul_stone": "Soul Stone",
+  "block.dynastymod.soul_infuser": "Soul Infuser",
+
+
+  "item.dynastymod.azurite": "Azurite",
+  "item.dynastymod.selenite": "Selenite",
+  "item.dynastymod.selenite_fragment": "Selenite Fragment",
+  "item.dynastymod.solarite": "Solarite",
+  "item.dynastymod.solarite_fragment": "Solarite Fragment",
+  "item.dynastymod.purified_gold_ingot": "Purified Gold Ingot",
+  "item.dynastymod.soul": "Soul",
+  "item.dynastymod.date": "Date",
+  "item.dynastymod.papyrus_fiber": "Papyrus Fiber",
+  "item.dynastymod.raska_fang": "Raska Fang",
+  "item.dynastymod.mega_mummy_spawn_egg": "Mega Mummy Spawn Egg",
+  "item.dynastymod.rick_astley_music_disc": "Rick Astley Music Disc",
+  "item.dynastymod.rick_astley_music_disc.desc": "Never Gonna Give You Up",
+
+
+  "entity.dynastymod.mega_mummy": "Mega Mummy",
+
+
+  "itemGroup.dynastymod_tab": "DynastyMod",
+  "key.categories.dynastymod": "Dynastymod",
+  "key.dynastymod.key_one": "Test",
+  "container.dynastymod.soul_infuser": "Soul Infuser"
+}
