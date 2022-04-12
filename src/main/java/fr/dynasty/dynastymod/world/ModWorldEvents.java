@@ -71,7 +71,7 @@ public class ModWorldEvents {
 
         }
     }
-    
+
     private static void addStructures(Map<Structure<?>, StructureSeparationSettings> tempMap) {
         tempMap.putIfAbsent(ModStructures.OASIS.get(), DimensionStructuresSettings.DEFAULTS.get(ModStructures.OASIS.get()));
     }
