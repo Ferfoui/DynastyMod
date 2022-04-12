@@ -2,23 +2,23 @@ package fr.dynasty.dynastymod.data.loottable;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
+import fr.dynasty.dynastymod.entity.ModEntityTypes;
 import fr.dynasty.dynastymod.init.ModBlocks;
 import fr.dynasty.dynastymod.init.ModItems;
-import net.minecraft.advancements.criterion.EnchantmentPredicate;
-import net.minecraft.advancements.criterion.ItemPredicate;
-import net.minecraft.advancements.criterion.MinMaxBounds;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.LootTableProvider;
 import net.minecraft.data.loot.BlockLootTables;
+import net.minecraft.data.loot.EntityLootTables;
 import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.Items;
 import net.minecraft.loot.*;
-import net.minecraft.loot.conditions.ILootCondition;
-import net.minecraft.loot.conditions.MatchTool;
+import net.minecraft.loot.conditions.KilledByPlayer;
+import net.minecraft.loot.conditions.RandomChanceWithLooting;
 import net.minecraft.loot.conditions.TableBonus;
 import net.minecraft.loot.functions.ApplyBonus;
+import net.minecraft.loot.functions.LootingEnchantBonus;
 import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
@@ -39,7 +39,8 @@ public class LootTableGenerator extends LootTableProvider {
     @Override
     protected List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootParameterSet>> getTables() {
         return ImmutableList.of(
-                Pair.of(ModBlockLootTables::new, LootParameterSets.BLOCK)
+                Pair.of(ModBlockLootTables::new, LootParameterSets.BLOCK),
+                Pair.of(ModEntityLootTables::new, LootParameterSets.ENTITY)
         );
     }
 
@@ -51,7 +52,11 @@ public class LootTableGenerator extends LootTableProvider {
     public static class ModBlockLootTables extends BlockLootTables {
 
         protected static LootTable.Builder createPalmLeavesDrops(Block block, Block drop, float... chances) {
-            return createLeavesDrops(block, drop, chances).withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1)).when(HAS_NO_SHEARS_OR_SILK_TOUCH).add(applyExplosionCondition(block, ItemLootEntry.lootTableItem(ModItems.DATE.get())).when(TableBonus.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
+            return createLeavesDrops(block, drop, chances)
+                    .withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+                            .when(HAS_NO_SHEARS_OR_SILK_TOUCH)
+                            .add(applyExplosionCondition(block, ItemLootEntry.lootTableItem(ModItems.DATE.get()))
+                                    .when(TableBonus.bonusLevelFlatChance(Enchantments.BLOCK_FORTUNE, 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))));
         }
 
         @Override
@@ -92,6 +97,30 @@ public class LootTableGenerator extends LootTableProvider {
         @Override
         protected Iterable<Block> getKnownBlocks() {
             return ModBlocks.BLOCKS.getEntries().stream()
+                    .map(RegistryObject::get)
+                    .collect(Collectors.toList());
+        }
+    }
+
+    public static class ModEntityLootTables extends EntityLootTables {
+
+        @Override
+        protected void addTables() {
+            add(ModEntityTypes.MEGA_MUMMY.get(), LootTable.lootTable()
+                    .withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+                            .add(ItemLootEntry.lootTableItem(Items.ROTTEN_FLESH)
+                                    .apply(SetCount.setCount(RandomValueRange.between(0.0F, 3.0F)))
+                                    .apply(LootingEnchantBonus.lootingMultiplier(RandomValueRange.between(0.0F, 1.0F)))))
+                    .withPool(LootPool.lootPool().setRolls(ConstantRange.exactly(1))
+                            .add(ItemLootEntry.lootTableItem(ModItems.SOUL.get()))
+                            .add(ItemLootEntry.lootTableItem(Items.PAPER))
+                            .when(KilledByPlayer.killedByPlayer())
+                            .when(RandomChanceWithLooting.randomChanceAndLootingBoost(0.025F, 0.01F))));
+        }
+
+        @Override
+        protected Iterable<EntityType<?>> getKnownEntities() {
+            return ModEntityTypes.ENTITY_TYPES.getEntries().stream()
                     .map(RegistryObject::get)
                     .collect(Collectors.toList());
         }

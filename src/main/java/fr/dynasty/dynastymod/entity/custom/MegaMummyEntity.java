@@ -62,7 +62,6 @@ public class MegaMummyEntity extends ZombieEntity {
         return SoundEvents.HUSK_AMBIENT;
     }
 
-
     @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.HUSK_DEATH;
