@@ -21,9 +21,9 @@ public class ModSpawnEggItem extends SpawnEggItem {
     protected static final List<ModSpawnEggItem> UNADDED_EGGS = new ArrayList<>();
     private final Lazy<? extends EntityType<?>> entityTypeSupplier;
 
-    public ModSpawnEggItem(final RegistryObject<? extends EntityType<?>> entityTypeSupplier,
-                           int primaryColorIn, int secondaryColorIn, Properties builder) {
-        super(null, primaryColorIn, secondaryColorIn, builder);
+    @SuppressWarnings("ConstantConditions")
+    public ModSpawnEggItem(final RegistryObject<? extends EntityType<?>> entityTypeSupplier, int color1, int color2, Properties builder) {
+        super(null, color1, color2, builder);
         this.entityTypeSupplier = Lazy.of(entityTypeSupplier::get);
         UNADDED_EGGS.add(this);
     }
