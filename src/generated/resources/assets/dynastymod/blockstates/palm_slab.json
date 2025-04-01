@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "dynastymod:block/palm_slab_top"
+    },
+    "type=bottom": {
+      "model": "dynastymod:block/palm_slab"
+    },
+    "type=double": {
+      "model": "dynastymod:block/palm_planks"
+    }
+  }
+}

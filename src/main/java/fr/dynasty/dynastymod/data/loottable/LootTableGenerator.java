@@ -82,11 +82,15 @@ public class LootTableGenerator extends LootTableProvider {
 
             dropSelf(ModBlocks.PALM_LOG.get());
             dropSelf(ModBlocks.PALM_WOOD.get());
-            dropSelf(ModBlocks.PALM_PLANKS.get());
             dropSelf(ModBlocks.STRIPPED_PALM_LOG.get());
             dropSelf(ModBlocks.STRIPPED_PALM_WOOD.get());
             add(ModBlocks.PALM_LEAVES.get(), (block) -> createPalmLeavesDrops(block, ModBlocks.PALM_SAPLING.get(), NORMAL_LEAVES_SAPLING_CHANCES));
             dropSelf(ModBlocks.PALM_SAPLING.get());
+            dropSelf(ModBlocks.PALM_PLANKS.get());
+            dropSelf(ModBlocks.PALM_STAIRS.get());
+            dropSelf(ModBlocks.PALM_SLAB.get());
+            dropSelf(ModBlocks.PALM_FENCE.get());
+            dropSelf(ModBlocks.PALM_FENCE_GATE.get());
             dropSelf(ModBlocks.PALM_SIGN.get());
             dropOther(ModBlocks.PALM_WALL_SIGN.get(), ModBlocks.PALM_SIGN.get());
 

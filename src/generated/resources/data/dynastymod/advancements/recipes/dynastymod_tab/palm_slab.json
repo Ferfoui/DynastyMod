@@ -2,11 +2,11 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "dynastymod:palm_sign"
+      "dynastymod:palm_slab"
     ]
   },
   "criteria": {
-    "has_palm_planks": {
+    "has_planks": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
@@ -19,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "dynastymod:palm_sign"
+        "recipe": "dynastymod:palm_slab"
       }
     }
   },
   "requirements": [
     [
-      "has_palm_planks",
+      "has_planks",
       "has_the_recipe"
     ]
   ]

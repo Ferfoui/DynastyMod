@@ -1,21 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
-  "group": "sign",
+  "group": "wooden_stairs",
   "pattern": [
-    "###",
-    "###",
-    " X "
+    "#  ",
+    "## ",
+    "###"
   ],
   "key": {
     "#": {
       "item": "dynastymod:palm_planks"
-    },
-    "X": {
-      "item": "minecraft:stick"
     }
   },
   "result": {
-    "item": "dynastymod:palm_sign",
-    "count": 3
+    "item": "dynastymod:palm_stairs",
+    "count": 4
   }
 }

@@ -22,12 +22,14 @@ public class ItemTagsGenerator extends ItemTagsProvider {
     protected void addTags() {
         copy(ModTags.Blocks.CELESTIAL_BLOCKS, ModTags.Items.CELESTIAL_BLOCKS);
         tag(ModTags.Items.INFUSER_ITEMS).add(ModItems.SOUL.get());
-        copy(ModTags.Blocks.PALM_LOGS, ModTags.Items.PALM_LOGS);
 
         copy(BlockTags.PLANKS, ItemTags.PLANKS);
-        copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
-        copy(BlockTags.LOGS, ItemTags.LOGS);
+        copy(BlockTags.WOODEN_STAIRS, ItemTags.WOODEN_STAIRS);
+        copy(BlockTags.WOODEN_SLABS, ItemTags.WOODEN_SLABS);
+        copy(BlockTags.WOODEN_FENCES, ItemTags.WOODEN_FENCES);
         copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
+        copy(ModTags.Blocks.PALM_LOGS, ModTags.Items.PALM_LOGS);
+        copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
         copy(BlockTags.LEAVES, ItemTags.LEAVES);
         copy(BlockTags.STANDING_SIGNS, ItemTags.SIGNS);
     }

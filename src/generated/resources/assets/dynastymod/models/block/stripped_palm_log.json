@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "dynastymod:block/stripped_palm_log",
+    "end": "dynastymod:block/stripped_palm_log_top"
+  }
+}

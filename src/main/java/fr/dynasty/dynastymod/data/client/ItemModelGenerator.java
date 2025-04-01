@@ -1,11 +1,15 @@
 package fr.dynasty.dynastymod.data.client;
 
 import fr.dynasty.dynastymod.DynastyMod;
+import fr.dynasty.dynastymod.init.ModBlocks;
 import fr.dynasty.dynastymod.init.ModItems;
+import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.client.model.generators.ModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class ItemModelGenerator extends ItemModelProvider {
@@ -17,25 +21,29 @@ public class ItemModelGenerator extends ItemModelProvider {
     @Override
     protected void registerModels() {
         //blocks
-        withExistingParent("purified_gold_block", modLoc("block/purified_gold_block"));
-        withExistingParent("azurite_block", modLoc("block/azurite_block"));
-        withExistingParent("selenite_block", modLoc("block/selenite_block"));
-        withExistingParent("solarite_block", modLoc("block/solarite_block"));
+        withExistingParent(ModBlocks.PURIFIED_GOLD_BLOCK.get());
+        withExistingParent(ModBlocks.AZURITE_BLOCK.get());
+        withExistingParent(ModBlocks.SELENITE_BLOCK.get());
+        withExistingParent(ModBlocks.SOLARITE_BLOCK.get());
 
-        withExistingParent("azurite_ore", modLoc("block/azurite_ore"));
-        withExistingParent("selenite_ore", modLoc("block/selenite_ore"));
-        withExistingParent("solarite_ore", modLoc("block/solarite_ore"));
+        withExistingParent(ModBlocks.AZURITE_ORE.get());
+        withExistingParent(ModBlocks.SELENITE_BLOCK.get());
+        withExistingParent(ModBlocks.SOLARITE_ORE.get());
 
-        withExistingParent("soul_stone", modLoc("block/soul_stone"));
+        withExistingParent(ModBlocks.SOUL_STONE.get());
 
-        withExistingParent("soul_infuser", modLoc("block/soul_infuser"));
+        withExistingParent(ModBlocks.SOUL_INFUSER.get());
 
-        withExistingParent("palm_log", modLoc("block/palm_log"));
-        withExistingParent("palm_wood", modLoc("block/palm_wood"));
-        withExistingParent("stripped_palm_log", modLoc("block/stripped_palm_log"));
-        withExistingParent("stripped_palm_wood", modLoc("block/stripped_palm_wood"));
-        withExistingParent("palm_planks", modLoc("block/palm_planks"));
-        withExistingParent("palm_leaves", modLoc("block/palm_leaves"));
+        withExistingParent(ModBlocks.PALM_LOG.get());
+        withExistingParent(ModBlocks.PALM_WOOD.get());
+        withExistingParent(ModBlocks.STRIPPED_PALM_LOG.get());
+        withExistingParent(ModBlocks.STRIPPED_PALM_WOOD.get());
+        withExistingParent(ModBlocks.PALM_LEAVES.get());
+        withExistingParent(ModBlocks.PALM_PLANKS.get());
+        withExistingParent(ModBlocks.PALM_STAIRS.get());
+        withExistingParent(ModBlocks.PALM_SLAB.get());
+        withExistingParent("palm_fence", DynastyMod.rl("block/palm_fence_inventory"));
+        withExistingParent(ModBlocks.PALM_FENCE_GATE.get());
 
 
         ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
@@ -73,6 +81,15 @@ public class ItemModelGenerator extends ItemModelProvider {
 
     private void builder(String name, ModelFile model) {
         getBuilder(name).parent(model).texture("layer0", "item/" + name);
+    }
+
+    private ResourceLocation blockTexture(Block block) {
+        ResourceLocation name = block.getRegistryName();
+        return new ResourceLocation(name.getNamespace(), ModelProvider.BLOCK_FOLDER + "/" + name.getPath());
+    }
+
+    private void withExistingParent(Block block) {
+        withExistingParent(block.getRegistryName().getPath(), blockTexture(block));
     }
 
 }

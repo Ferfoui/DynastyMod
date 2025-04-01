@@ -32,13 +32,7 @@ public class RecipeGenerator extends RecipeProvider {
                 .unlockedBy("unlock", has(ModBlocks.PURIFIED_GOLD_BLOCK.get()))
                 .save(consumer, DynastyMod.rl("purified_gold_ingot_from_purified_gold_block"));
 
-        ShapedRecipeBuilder.shaped(ModBlocks.PURIFIED_GOLD_BLOCK.get())
-                .pattern("XXX")
-                .pattern("XXX")
-                .pattern("XXX")
-                .define('X', ModItems.PURIFIED_GOLD_INGOT.get())
-                .unlockedBy("unlock", has(ModItems.PURIFIED_GOLD_INGOT.get()))
-                .save(consumer);
+        blockFromIngots(consumer, ModBlocks.PURIFIED_GOLD_BLOCK.get(), ModItems.PURIFIED_GOLD_INGOT.get());
 
         ShapedRecipeBuilder.shaped(ModItems.SELENITE.get())
                 .pattern("XX")
@@ -59,39 +53,21 @@ public class RecipeGenerator extends RecipeProvider {
                 .unlockedBy("unlock", has(ModBlocks.AZURITE_BLOCK.get()))
                 .save(consumer, DynastyMod.rl("azurite_from_azurite_block"));
 
-        ShapedRecipeBuilder.shaped(ModBlocks.AZURITE_BLOCK.get())
-                .pattern("XXX")
-                .pattern("XXX")
-                .pattern("XXX")
-                .define('X', ModItems.AZURITE.get())
-                .unlockedBy("unlock", has(ModItems.AZURITE.get()))
-                .save(consumer);
+        blockFromIngots(consumer, ModBlocks.AZURITE_BLOCK.get(), ModItems.AZURITE.get());
 
         ShapelessRecipeBuilder.shapeless(ModItems.SELENITE.get(), 9)
                 .requires(ModBlocks.SELENITE_BLOCK.get())
                 .unlockedBy("unlock", has(ModBlocks.SELENITE_BLOCK.get()))
                 .save(consumer, DynastyMod.rl("selenite_from_selenite_block"));
 
-        ShapedRecipeBuilder.shaped(ModBlocks.SELENITE_BLOCK.get())
-                .pattern("XXX")
-                .pattern("XXX")
-                .pattern("XXX")
-                .define('X', ModItems.SELENITE.get())
-                .unlockedBy("unlock", has(ModItems.SELENITE.get()))
-                .save(consumer);
+        blockFromIngots(consumer, ModBlocks.SELENITE_BLOCK.get(), ModItems.SELENITE.get());
 
         ShapelessRecipeBuilder.shapeless(ModItems.SOLARITE.get(), 9)
                 .requires(ModBlocks.SOLARITE_BLOCK.get())
                 .unlockedBy("unlock", has(ModBlocks.SOLARITE_BLOCK.get()))
                 .save(consumer, DynastyMod.rl("solarite_from_solarite_block"));
 
-        ShapedRecipeBuilder.shaped(ModBlocks.SOLARITE_BLOCK.get())
-                .pattern("XXX")
-                .pattern("XXX")
-                .pattern("XXX")
-                .define('X', ModItems.SOLARITE.get())
-                .unlockedBy("unlock", has(ModItems.SOLARITE.get()))
-                .save(consumer);
+        blockFromIngots(consumer, ModBlocks.SOLARITE_BLOCK.get(), ModItems.SOLARITE.get());
 
         ShapedRecipeBuilder.shaped(ModBlocks.SOUL_STONE.get())
                 .pattern("XX")
@@ -111,13 +87,17 @@ public class RecipeGenerator extends RecipeProvider {
 
         planksFromLogs(consumer, ModBlocks.PALM_PLANKS.get(), ModTags.Items.PALM_LOGS);
 
-        ShapedRecipeBuilder.shaped(ModItems.PALM_SIGN.get())
-                .pattern("XXX")
-                .pattern("XXX")
-                .pattern(" # ")
-                .define('X', ModBlocks.PALM_PLANKS.get()).define('#', Items.STICK)
-                .unlockedBy("unlock", has(ModBlocks.PALM_PLANKS.get()))
-                .save(consumer);
+        woodFromLogs(consumer, ModBlocks.PALM_WOOD.get(), ModBlocks.PALM_LOG.get());
+
+        woodenFence(consumer, ModBlocks.PALM_FENCE.get(), ModBlocks.PALM_PLANKS.get());
+
+        woodenFenceGate(consumer, ModBlocks.PALM_FENCE_GATE.get(), ModBlocks.PALM_PLANKS.get());
+
+        woodenSlab(consumer, ModBlocks.PALM_SLAB.get(), ModBlocks.PALM_PLANKS.get());
+
+        woodenStairs(consumer, ModBlocks.PALM_STAIRS.get(), ModBlocks.PALM_PLANKS.get());
+
+        woodenSign(consumer, ModItems.PALM_SIGN.get(), ModBlocks.PALM_PLANKS.get());
 
         ShapelessRecipeBuilder.shapeless(ModItems.PAPYRUS_FIBER.get(), 2)
                 .requires(ModBlocks.PAPYRUS.get())
@@ -181,6 +161,16 @@ public class RecipeGenerator extends RecipeProvider {
                 .unlockedBy("unlock", has(Blocks.COBBLESTONE))
                 .save(consumer, "stone_from_blasting");
 
+    }
+
+    protected void blockFromIngots(Consumer<IFinishedRecipe> consumer, IItemProvider block, IItemProvider material) {
+        ShapedRecipeBuilder.shaped(block)
+                .pattern("XXX")
+                .pattern("XXX")
+                .pattern("XXX")
+                .define('X', material)
+                .unlockedBy("unlock", has(material))
+                .save(consumer);
     }
 
 }
